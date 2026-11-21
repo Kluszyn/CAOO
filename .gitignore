@@ -1,0 +1,27 @@
+# Sekrety i zmienne środowiskowe
+.env
+.env.*
+!.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+*.egg-info/
+
+# Node
+node_modules/
+dist/
+*.tsbuildinfo
+
+# Dane lokalne aplikacji
+caoo/backend/dane/
+
+# System i edytory
+.DS_Store
+.idea/
+.vscode/
+*.swp
