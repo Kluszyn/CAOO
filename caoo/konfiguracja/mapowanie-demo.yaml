@@ -1,0 +1,61 @@
+# Źródło zapisanych odpowiedzi mapowania (#21) dla fikcyjnych pracowników demo.
+# UWAGA: to NIE są odpowiedzi modelu językowego. Przygotowała je ręcznie osoba D jako
+# odpowiedzi zapasowe dostawcy „zapisane” (spec #2: fallback do odpowiedzi zapisanych), żeby
+# demo działało bez klucza API. W interfejsie mają tryb „zapisane”.
+# Wymagania formalne (wykształcenie) celowo nie mają kompetencji → „nieprzypisane”.
+# Po zmianie: uv run python -m caoo.mapowanie  (przelicza konfiguracja/mapowanie-zapisane.json)
+
+K-001:
+  zadanie:
+    - [zarzadzanie-ludzmi, zarzadzanie-strategiczne, podejmowanie-decyzji]   # Kierowanie pracą urzędu
+    - [rzetelnosc, podejmowanie-decyzji]                                     # Nadzór nad kontrolą weterynaryjną
+    - [wspolpraca, komunikacja]                                              # Współpraca z inspekcją wojewódzką
+  wymaganie:
+    - [wykorzystywanie-wiedzy]                                               # Prawo wykonywania zawodu
+    - [zarzadzanie-ludzmi]                                                   # 5 lat doświadczenia kierowniczego
+K-002:
+  zadanie:
+    - [organizacja-pracy, zarzadzanie-ludzmi]                                # Planowanie i rozdział zadań
+    - [organizacja-pracy, wspolpraca]                                        # Koordynacja projektów rozwojowych
+    - [zarzadzanie-ludzmi]                                                   # Ocena pracowników wydziału
+  wymaganie:
+    - []                                                                     # Wykształcenie wyższe
+    - [zarzadzanie-ludzmi]                                                   # 3 lata w zarządzaniu zespołem
+K-003:
+  zadanie:
+    - [myslenie-analityczne, wykorzystywanie-wiedzy]                         # Analizy i opinie
+    - [komunikacja, rzetelnosc]                                              # Projekty pism
+    - [komunikacja, wspolpraca, negocjowanie]                                # Spotkania z partnerami
+  wymaganie:
+    - [wykorzystywanie-wiedzy]                                               # Wykształcenie ekonomiczne/prawnicze
+    - [komunikacja]                                                          # Język angielski
+K-004:
+  zadanie:
+    - [sytuacje-kryzysowe, rzetelnosc]                                       # Monitorowanie incydentów
+    - [rzetelnosc, myslenie-analityczne]                                     # Procedury bezpieczeństwa
+    - [wystapienia-publiczne, komunikacja]                                   # Szkolenie pracowników
+  wymaganie:
+    - []                                                                     # Wykształcenie wyższe techniczne
+    - [wykorzystywanie-wiedzy]                                               # Certyfikat z bezpieczeństwa IT
+K-005:
+  zadanie:
+    - [rzetelnosc, organizacja-pracy]                                        # Przyjmowanie dokumentacji
+    - [orientacja-na-klienta, rzetelnosc]                                    # Udostępnianie akt
+    - [rzetelnosc]                                                           # Brakowanie dokumentacji
+  wymaganie:
+    - []                                                                     # Wykształcenie średnie
+    - [wykorzystywanie-wiedzy]                                               # Kurs archiwalny
+K-006:
+  zadanie:
+    - [myslenie-analityczne, rzetelnosc]                                     # Walidacja metod
+    - [rzetelnosc, komunikacja]                                              # Audyty wewnętrzne
+    - [komunikacja, myslenie-analityczne]                                    # Raportowanie wyników
+  wymaganie:
+    - []                                                                     # Wykształcenie wyższe chemiczne
+    - [wykorzystywanie-wiedzy]                                               # Norma ISO 17025
+K-007:
+  zadanie:
+    - [komunikacja, rzetelnosc]                                              # Przekłady pisemne
+    - [rzetelnosc, wykorzystywanie-wiedzy]                                   # Weryfikacja terminologii
+  wymaganie:
+    - []                                                                     # Wykształcenie wyższe filologiczne

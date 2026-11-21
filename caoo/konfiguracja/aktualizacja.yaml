@@ -1,0 +1,117 @@
+# Aktualizacja przepisów v1 → v2 (#25, V1-18; spec #2, historyjki 21–26, 127).
+#
+# Administrator wgrywa akt zmieniający. Samo wgranie nie zmienia aktywnych reguł. LLM (przez
+# LlmProvider z caoo-core) dla każdego parametru z katalogu odpowiada wyłącznie wyborem
+# (zmienia / nie zmienia) i dosłownymi cytatami z aktu i z obecnych przepisów. Nową wartość
+# odczytuje z cytatu wzorzec; administrator ją przyjmuje albo poprawia. Przepis aktu, którego
+# nie pokrywa żaden parametr, dostaje flagę „wymaga zmiany aplikacji”.
+# Publikacja tworzy nową wersję reguł z datą obowiązywania. Zakończone oceny zostają przy
+# wersji, z którą je sporządzono; oceny w toku z niejasnym przejściem dostają zadanie decyzyjne.
+
+wersja_promptu: diff-przepisow-v1
+
+# Fikcyjny akt do demo (ścieżka względem caoo/konfiguracja/).
+akt_demo: aktualizacja/akt-zmieniajacy-demo.txt
+
+llm:
+  dostawcy:
+    # Na żywo tylko z ANTHROPIC_API_KEY; bez klucza łańcuch przechodzi do zapisanych odpowiedzi.
+    - {typ: anthropic, model: claude-sonnet-5-5}
+    - {typ: zapisane, plik: konfiguracja/aktualizacja/zapisane.json}
+
+etykiety:
+  propozycja: propozycja — wymaga zatwierdzenia
+  wymaga_zmiany_aplikacji: wymaga zmiany aplikacji
+  brak_odpowiedzi: brak poprawnej odpowiedzi LLM — wymaga ręcznej analizy
+  do_sprawdzenia: do sprawdzenia ręcznie — nie wszystkie parametry przeanalizowano
+
+# Parametry, które aplikacja umie zmienić konfiguracją. `reguly` – reguły wersji, z których
+# pochodzą cytaty „przed” i które po publikacji cytują akt; `wzorzec` – wyrażenie odczytujące
+# nową wartość z cytatu aktu (ostatnie trafienie); `zastosowanie` – gdzie wartość trafia w skali
+# lub kryteriach wersji.
+parametry:
+  - id: granica-pozytywnej
+    nazwa: Granica oceny pozytywnej (dolna granica poziomu „na poziomie oczekiwań”)
+    rodzaj: granica_pozytywnej
+    reguly: [skala.progi, wynik.pozytywna, wynik.negatywna-poziom]
+    zastosowanie:
+      poziom_ponizej: poniżej oczekiwań      # górna granica tego poziomu = nowa wartość
+      poziom_granicy: na poziomie oczekiwań  # dolna granica tego poziomu = nowa wartość
+      wynik: POZYTYWNA                       # próg średniej w regule tego wyniku = nowa wartość
+    pytanie: >-
+      Czy akt zmienia przedziały średniej dla poziomów „poniżej oczekiwań” i „na poziomie
+      oczekiwań” (§ 11 ust. 1 pkt 2)? Wskaż nowe brzmienie z aktu i dotychczasowe z rozporządzenia.
+    wzorzec: 'na poziomie oczekiwań – powyżej (\d+(?:,\d+)?) punkt'
+  - id: limit-dodatkowych
+    nazwa: Najwyższa liczba kryteriów dodatkowych
+    rodzaj: limit_dodatkowych
+    reguly: [kryteria.limit-dodatkowych]
+    zastosowanie:
+      nazwa_reguly: "Najwyżej {wartosc} kryteria dodatkowe"
+    pytanie: >-
+      Czy akt zmienia największą liczbę kryteriów dodatkowych, które może wybrać oceniający
+      (§ 5 ust. 2)? Wskaż nowe brzmienie z aktu i dotychczasowe z rozporządzenia.
+    wzorzec: 'nie więcej niż (\d+) kryteria dodatkowe'
+
+# Odpowiedzi zapisane dla aktu demo – przygotowane ręcznie (nie przez model). Plik
+# `aktualizacja/zapisane.json` generuje `uv run python -m caoo.aktualizacja`; test pilnuje zgodności.
+odpowiedzi_demo:
+  granica-pozytywnej:
+    zmienia: true
+    cytaty_aktu:
+      - "a) lit. b otrzymuje brzmienie: „b) poniżej oczekiwań – powyżej 2 punktów do 4,5 punktu,”,"
+      - "b) lit. c otrzymuje brzmienie: „c) na poziomie oczekiwań – powyżej 4,5 punktu do 6 punktów,”;"
+    cytaty_przed:
+      - "c) na poziomie oczekiwań – powyżej 4 punktów do 6 punktów"
+  limit-dodatkowych:
+    zmienia: true
+    cytaty_aktu:
+      - "w § 5 ust. 2 wyrazy „nie więcej niż 3 kryteria dodatkowe” zastępuje się wyrazami „nie więcej niż 2 kryteria dodatkowe”"
+    cytaty_przed:
+      - "Oceniający może wybrać z wykazu kryteriów oceny nie więcej niż 3 kryteria dodatkowe"
+
+# Data wejścia w życie odczytywana z aktu (propozycja daty obowiązywania; inna data wymaga uzasadnienia).
+data_wejscia:
+  wzorzec: 'wchodzi w życie z dniem (\d{1,2}) (\w+) (\d{4})'
+  miesiace: [stycznia, lutego, marca, kwietnia, maja, czerwca, lipca, sierpnia, września, października, listopada, grudnia]
+
+# Obszary aplikacji zależne od sekcji wersji reguł – zestawienie pokazuje, które się zmieniają.
+obszary:
+  - id: skala
+    nazwa: Skala i wynik § 11
+    sekcja: skala
+    wplyw: Wynik i poziom ocen w toku, scenariusze kontrolne, przedziały w wydruku arkusza.
+  - id: kryteria
+    nazwa: Kryteria i formularze arkuszy
+    sekcja: kryteria
+    wplyw: Wybór kryteriów dodatkowych (limit), wiersze kryteriów dodatkowych w arkuszach A, B i C.
+  - id: terminy
+    nazwa: Terminy
+    sekcja: terminy
+    wplyw: Termin cyklu, ustalenia kryteriów, odwołania i ponownej oceny.
+  - id: graf
+    nazwa: Graf kompetencji i rekomendacje
+    sekcja: graf          # katalog grafu budowany z wersji reguł (#20) – porównanie katalogów
+    wplyw: Węzły kryteriów, poziomy na ścieżce oceny i rekomendacje rozwojowe (#23).
+  - id: pytania-pomocnicze
+    nazwa: Pytania pomocnicze i propozycja oceny
+    sekcja: niezalezny    # metodyka robocza (#14) ma własne wersje, niezależne od przepisów
+    wplyw: Robocza metodyka nie zależy od wersji przepisów – bez zmian; jej wersje prowadzi się osobno.
+
+# Scenariusze kontrolne przeliczane przed publikacją według wersji przed i po.
+scenariusze:
+  - {id: srednia-4-2, opis: "Średnia 4,2 – między dotychczasową a nową granicą", oceny: [5, 5, 5, 3, 3]}
+  - {id: srednia-4-5, opis: "Średnia dokładnie 4,5", oceny: [5, 5, 5, 3, 5, 5, 3, 5]}
+  - {id: srednia-4-6, opis: "Średnia 4,6 – powyżej obu granic", oceny: [5, 5, 5, 3, 5]}
+  - {id: jedno-1pkt, opis: "Jedno kryterium na 1 pkt przy wysokiej średniej", oceny: [9, 9, 9, 9, 1]}
+
+regula:
+  id: aktualizacja.diff-przepisow
+  adnotacje:
+    - kategoria: FUNKCJA_APLIKACJI
+      uzasadnienie: >-
+        Spec #2 (historyjki 21–26, 127): akt zmieniający nie zmienia aktywnych reguł do publikacji;
+        LLM wskazuje tylko zmieniane parametry z katalogu i cytaty z obu wersji; wartości przyjmuje
+        administrator; zakończone oceny odtwarzane według wersji z chwili sporządzenia; oceny
+        w toku z niejasnym przejściem wymagają decyzji człowieka.
+      zatwierdził: Hubert Nowak (#25) – do zatwierdzenia przez właściciela modelu

@@ -1,0 +1,30 @@
+# Mapowanie opisu stanowiska do katalogu kompetencji przez LLM (#21, V1-14; spec #2).
+# LLM wybiera tylko ID z katalogu (caoo_core.llm: wybór spoza katalogu ⇒ odpowiedź odrzucona,
+# następny dostawca). Bez poprawnej odpowiedzi element jest „nieprzypisany – wymaga weryfikacji”.
+# LLM nie pisze treści – oceniający zatwierdza, odrzuca albo koryguje powiązania.
+
+wersja_promptu: "mapowanie-osp-v1"
+
+llm:
+  dostawcy:
+    # Na żywo tylko z ANTHROPIC_API_KEY; bez klucza łańcuch przechodzi do zapisanych odpowiedzi.
+    - {typ: anthropic, model: claude-sonnet-5-5}
+    - {typ: zapisane, plik: konfiguracja/mapowanie-zapisane.json}
+
+etykiety:
+  propozycja: propozycja — wymaga zatwierdzenia
+  nieprzypisane: nieprzypisane — wymaga weryfikacji
+  tryby:
+    NA_ŻYWO: na żywo
+    ZAPISANE: zapisane
+
+regula:
+  id: mapowanie.osp-do-katalogu
+  adnotacje:
+    - kategoria: FUNKCJA_APLIKACJI
+      uzasadnienie: >-
+        Spec #2 (historyjki 72, 120, 121): LLM mapuje zadania i wymagania z opisu stanowiska tylko
+        do istniejących ID katalogu; element spoza katalogu jest „nieprzypisany”; każda propozycja
+        ma znacznik „propozycja – wymaga zatwierdzenia” i tryb „na żywo / zapisane”; wywołanie jest
+        logowane. Zatwierdza człowiek.
+      zatwierdził: osoba D (#21) – do zatwierdzenia przez właściciela modelu

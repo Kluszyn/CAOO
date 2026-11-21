@@ -1,0 +1,42 @@
+# Rekomendacje i plan rozwoju (#23, V1-16; spec #2).
+# Działania pochodzą z katalogu grafu (#20, graf.yaml – każde z cytatem z poradnika).
+# Ten plik ustala tylko regułę doboru: jaka luka i jaka kompetencja → które działania.
+
+wersja: "rekomendacje-v1-1"
+
+# Oznaczenia elementów rekomendacji (kryterium #23) ← status węzła grafu.
+oznaczenia:
+  potwierdzone: z danych
+  dopasowane: z reguły
+  propozycja: propozycja
+
+# Dobór działań z katalogu według luki (punkty do roboczego poziomu wymaganego).
+dobor_wedlug_luki:
+  - {luka_od: 4, dzialania: [coaching, warsztaty]}   # np. 1 pkt przy celu 5
+  - {luka_od: 1, dzialania: [szkolenie, samoksztalcenie]}
+
+# Działania dodatkowe dla konkretnych kompetencji (id z katalogu grafu).
+dobor_wedlug_kompetencji:
+  wykorzystywanie-wiedzy: [literatura-branzowa, samoksztalcenie]
+  zarzadzanie-ludzmi: [coaching]
+
+# Mocna strona: ocena cząstkowa co najmniej taka.
+mocna_strona_od: 7
+
+# Niski wynik nie generuje wniosków o przeciążeniu – najwyżej pytanie do rozmowy (#23, historyjka 68).
+pytanie_przy_niskim_wyniku: "Czy na wynik w kryterium „{kompetencja}” wpływało obciążenie zadaniami lub brak wsparcia? Czego Pan/Pani potrzebuje?"
+
+struktura_wnioskow_iprz:
+  - Zakres wiedzy do poszerzenia
+  - Umiejętności wymagające doskonalenia
+  - Proponowane formy rozwoju (działanie, termin, osoba wspierająca, miernik)
+
+regula:
+  id: rekomendacje.dobor-dzialan
+  adnotacje:
+    - kategoria: FUNKCJA_APLIKACJI
+      uzasadnienie: >-
+        Spec #2 (#23): z luk w grafie reguła dobiera działania z katalogu; przy rekomendacji widać
+        zadanie, kompetencję, dowody, poziom oczekiwany i zaobserwowany. Progi doboru i działania
+        dla kompetencji są decyzją aplikacji – rozporządzenie wymaga tylko wniosków do IPRZ (§ 11 ust. 1 pkt 5).
+      zatwierdził: osoba D (#23) – do zatwierdzenia przez właściciela metodyki

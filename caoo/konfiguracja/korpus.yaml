@@ -1,0 +1,106 @@
+# Korpus aplikacji. Źródła: wyłącznie folder „materiały” (tylko do odczytu).
+# Ścieżki plików są względne wobec tego pliku. Inny manifest: zmienna CAOO_MANIFEST.
+#   nazwa      – nazwa pokazywana użytkownikowi
+#   kategoria  – kategoria cytatów z tego dokumentu (PRZEPIS | OBJAŚNIENIE_MATERIAŁU)
+
+katalog_zrodel: "../../materiały"
+
+dokumenty:
+  - doc_id: rozp-oceny-okresowe
+    doc_version: "2016"
+    nazwa: Rozporządzenie w sprawie ocen okresowych (Dz.U. 2016 poz. 470)
+    plik: "../../materiały/1. Akty prawne/1. Rozporządzenie w sprawie ocen okresowych.pdf"
+    kategoria: PRZEPIS
+
+  - doc_id: ustawa-sc
+    nazwa: Ustawa o służbie cywilnej (tekst pełny)
+    plik: "../../materiały/1. Akty prawne/3. Ustawa o służbie cywilnej - cała.pdf"
+    kategoria: PRZEPIS
+
+  - doc_id: ustawa-sc-wyciag
+    nazwa: Ustawa o służbie cywilnej – wyciąg przepisów
+    plik: "../../materiały/1. Akty prawne/2. Ustawa o służbie cywilnej - wyciąg przepisów.docx"
+    kategoria: PRZEPIS
+
+  - doc_id: standardy-zzl
+    nazwa: Standardy zarządzania zasobami ludzkimi w służbie cywilnej
+    plik: "../../materiały/1. Akty prawne/4. Standardy zarządzania zzl w sc.pdf"
+    kategoria: OBJAŚNIENIE_MATERIAŁU
+
+  - doc_id: poradnik-oceny-okresowe
+    nazwa: Poradnik – oceny okresowe w służbie cywilnej
+    plik: "../../materiały/6. Materiały dodatkowe/Poradnik - oceny okresowe w służbie cywilnej.pdf"
+    kategoria: OBJAŚNIENIE_MATERIAŁU
+
+  - doc_id: liczenie-terminow
+    nazwa: Liczenie terminów
+    plik: "../../materiały/6. Materiały dodatkowe/liczenie terminów.docx"
+    kategoria: OBJAŚNIENIE_MATERIAŁU
+
+  - doc_id: opis-procesu
+    nazwa: Skrócony opis procesu oceny i podstawowych pojęć
+    plik: "../../materiały/3. Schemat procesu/Skrócony opis procesu oceny i podstawowych pojęć.docx"
+    kategoria: OBJAŚNIENIE_MATERIAŁU
+
+  - doc_id: use-cases-opis
+    nazwa: Przypadki użycia – opis
+    plik: "../../materiały/2. Przypadki użycia/use cases - opis.docx"
+    kategoria: OBJAŚNIENIE_MATERIAŁU
+
+  - doc_id: use-cases-warunki
+    nazwa: Przypadki użycia – warunki brzegowe
+    plik: "../../materiały/2. Przypadki użycia/use cases - warunki brzegowe.docx"
+    kategoria: OBJAŚNIENIE_MATERIAŁU
+
+  - doc_id: use-cases-diagram
+    nazwa: Przypadki użycia – diagram (A3)
+    plik: "../../materiały/2. Przypadki użycia/ocena okresowa - przypadki użycia na hackaton A3.pdf"
+    kategoria: OBJAŚNIENIE_MATERIAŁU
+
+  - doc_id: schemat-pol-a
+    nazwa: Formularz A – schemat pól
+    plik: "../../materiały/4. Formularze ocen/schematy widoku formularza A oceny okresowej/formularz oceny okresowej A - schemat pól formularza.docx"
+    kategoria: OBJAŚNIENIE_MATERIAŁU
+
+  - doc_id: schemat-pol-b
+    nazwa: Formularz B – schemat pól
+    plik: "../../materiały/4. Formularze ocen/schematy widoku formularza B oceny okresowej/formularz oceny okresowej B - schemat pól formularza.docx"
+    kategoria: OBJAŚNIENIE_MATERIAŁU
+
+  - doc_id: schemat-pol-c
+    nazwa: Formularz C – schemat pól
+    plik: "../../materiały/4. Formularze ocen/schematy widoku formularza C oceny okresowej/formularz oceny okresowej C - schemat pól formularza.docx"
+    kategoria: OBJAŚNIENIE_MATERIAŁU
+
+  # Wzory A/B/C w PDF nie mają warstwy tekstowej: zostają w korpusie, żeby panel pokazał
+  # „brak tekstu”. Treść formularzy cytujemy z załączników do rozporządzenia.
+  - doc_id: wzor-a
+    nazwa: Wzór formularza A (PDF bez warstwy tekstowej)
+    plik: "../../materiały/4. Formularze ocen/schematy widoku formularza A oceny okresowej/wzór formularza oceny okresowej arkusz A.pdf"
+    kategoria: OBJAŚNIENIE_MATERIAŁU
+
+  - doc_id: wzor-b
+    nazwa: Wzór formularza B (PDF bez warstwy tekstowej)
+    plik: "../../materiały/4. Formularze ocen/schematy widoku formularza B oceny okresowej/wzór formularza oceny okresowej arkusz B.pdf"
+    kategoria: OBJAŚNIENIE_MATERIAŁU
+
+  - doc_id: wzor-c
+    nazwa: Wzór formularza C (PDF bez warstwy tekstowej)
+    plik: "../../materiały/4. Formularze ocen/schematy widoku formularza C oceny okresowej/wzór formularza oceny okresowej arkusz C.pdf"
+    kategoria: OBJAŚNIENIE_MATERIAŁU
+
+  - doc_id: arkusz-b-excel
+    nazwa: Arkusz B – wersja zautomatyzowana (Excel, z błędami formuł)
+    plik: "../../materiały/4. Formularze ocen/8. Arkusz B-wersja zautomatyzowana.xlsx"
+    kategoria: OBJAŚNIENIE_MATERIAŁU
+
+# Pliki z „materiały” świadomie poza korpusem (wzorzec ścieżki względem folderu „materiały”).
+pominiete:
+  - wzorzec: "5. Przykładowe wypełnione formularze oceny/*"
+    powod: przykłady wypełnionych arkuszy – dane do importu (#18), nie źródło reguł
+  - wzorzec: "3. Schemat procesu/przepływ procesu*"
+    powod: schemat procesu w formatach graficznych/modelera (PNG, BPM, XPDL, XML) – podstawa maszyny stanów, nie cytatów
+  - wzorzec: "2. Przypadki użycia/*.vsdx"
+    powod: plik Visio; ta sama treść jest w PDF diagramu przypadków użycia
+  - wzorzec: "**/~$*"
+    powod: plik blokady Worda (tymczasowy), bez treści

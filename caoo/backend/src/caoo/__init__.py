@@ -1,0 +1,1 @@
+"""Cyfrowy Asystent Ocen Okresowych."""

@@ -1,0 +1,678 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Mock API kadrowego (dane demonstracyjne)",
+    "version": "1"
+  },
+  "paths": {
+    "/api/kadry/pracownicy": {
+      "get": {
+        "tags": [
+          "API kadrowe (mock, dane demonstracyjne)"
+        ],
+        "summary": "Lista",
+        "description": "Lista pracowników jednostki, które rola widzi (#10). Dane fikcyjne (`demo: true`).",
+        "operationId": "lista_api_kadry_pracownicy_get",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ListaPracownikow"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/kadry/pracownicy/{pracownik_id}": {
+      "get": {
+        "tags": [
+          "API kadrowe (mock, dane demonstracyjne)"
+        ],
+        "summary": "Profil",
+        "description": "Profil: dane, stanowisko, zatrudnienie, mianowanie i stopień, przełożony i zastępstwa,\nopis stanowiska, poprzednie oceny i zalecenia, nieobecności, uwagi i nagany.",
+        "operationId": "profil_api_kadry_pracownicy__pracownik_id__get",
+        "parameters": [
+          {
+            "name": "pracownik_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Pracownik Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Profil"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Nie ma takiego pracownika"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "ListaPracownikow": {
+        "properties": {
+          "demo": {
+            "type": "boolean",
+            "const": true,
+            "title": "Demo",
+            "default": true
+          },
+          "znacznik": {
+            "type": "string",
+            "title": "Znacznik",
+            "default": "dane demonstracyjne"
+          },
+          "jednostka": {
+            "type": "string",
+            "title": "Jednostka"
+          },
+          "pracownicy": {
+            "items": {
+              "$ref": "#/components/schemas/PracownikSkrot"
+            },
+            "type": "array",
+            "title": "Pracownicy"
+          }
+        },
+        "type": "object",
+        "required": [
+          "jednostka",
+          "pracownicy"
+        ],
+        "title": "ListaPracownikow"
+      },
+      "Mianowanie": {
+        "properties": {
+          "data": {
+            "type": "string",
+            "format": "date",
+            "title": "Data"
+          },
+          "stopien": {
+            "type": "string",
+            "title": "Stopien",
+            "description": "Stopień służbowy urzędnika służby cywilnej."
+          }
+        },
+        "type": "object",
+        "required": [
+          "data",
+          "stopien"
+        ],
+        "title": "Mianowanie"
+      },
+      "Nieobecnosc": {
+        "properties": {
+          "od": {
+            "type": "string",
+            "format": "date",
+            "title": "Od"
+          },
+          "do": {
+            "type": "string",
+            "format": "date",
+            "title": "Do"
+          },
+          "rodzaj": {
+            "type": "string",
+            "title": "Rodzaj"
+          },
+          "usprawiedliwiona": {
+            "type": "boolean",
+            "title": "Usprawiedliwiona"
+          }
+        },
+        "type": "object",
+        "required": [
+          "od",
+          "do",
+          "rodzaj",
+          "usprawiedliwiona"
+        ],
+        "title": "Nieobecnosc"
+      },
+      "OpisStanowiska": {
+        "properties": {
+          "cel": {
+            "type": "string",
+            "title": "Cel"
+          },
+          "zadania": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Zadania"
+          },
+          "wymagania": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Wymagania"
+          }
+        },
+        "type": "object",
+        "required": [
+          "cel",
+          "zadania",
+          "wymagania"
+        ],
+        "title": "OpisStanowiska"
+      },
+      "PoprzedniaOcena": {
+        "properties": {
+          "data_sporzadzenia": {
+            "type": "string",
+            "format": "date",
+            "title": "Data Sporzadzenia"
+          },
+          "data_zapoznania": {
+            "type": "string",
+            "format": "date",
+            "title": "Data Zapoznania",
+            "description": "Od tej daty biegną terminy odwołania i ponownej oceny."
+          },
+          "wynik": {
+            "type": "string",
+            "enum": [
+              "pozytywna",
+              "negatywna"
+            ],
+            "title": "Wynik"
+          },
+          "poziom": {
+            "type": "string",
+            "title": "Poziom"
+          },
+          "srednia": {
+            "type": "number",
+            "title": "Srednia"
+          },
+          "zalecenia": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Zalecenia",
+            "description": "Wnioski i zalecenia rozwojowe z tej oceny."
+          }
+        },
+        "type": "object",
+        "required": [
+          "data_sporzadzenia",
+          "data_zapoznania",
+          "wynik",
+          "poziom",
+          "srednia",
+          "zalecenia"
+        ],
+        "title": "PoprzedniaOcena"
+      },
+      "PracownikSkrot": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "imie": {
+            "type": "string",
+            "title": "Imie"
+          },
+          "nazwisko": {
+            "type": "string",
+            "title": "Nazwisko"
+          },
+          "stanowisko": {
+            "type": "string",
+            "title": "Stanowisko"
+          },
+          "komorka": {
+            "type": "string",
+            "title": "Komorka"
+          },
+          "przelozony_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Przelozony Id"
+          },
+          "demo": {
+            "type": "boolean",
+            "const": true,
+            "title": "Demo",
+            "default": true
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "imie",
+          "nazwisko",
+          "stanowisko",
+          "komorka",
+          "przelozony_id"
+        ],
+        "title": "PracownikSkrot",
+        "description": "Pozycja listy pracowników."
+      },
+      "Profil": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "imie": {
+            "type": "string",
+            "title": "Imie"
+          },
+          "nazwisko": {
+            "type": "string",
+            "title": "Nazwisko"
+          },
+          "stanowisko": {
+            "type": "string",
+            "title": "Stanowisko"
+          },
+          "komorka": {
+            "type": "string",
+            "title": "Komorka"
+          },
+          "przelozony_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Przelozony Id"
+          },
+          "demo": {
+            "type": "boolean",
+            "const": true,
+            "title": "Demo",
+            "default": true
+          },
+          "jednostka": {
+            "type": "string",
+            "title": "Jednostka"
+          },
+          "kierownik_urzedu": {
+            "type": "boolean",
+            "title": "Kierownik Urzedu"
+          },
+          "liczba_podleglych": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Liczba Podleglych"
+          },
+          "korpus": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "urzednik",
+                  "pracownik"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Korpus",
+            "description": "Urzędnik albo pracownik służby cywilnej."
+          },
+          "zatrudnienie": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Zatrudnienie"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "None: brak podstawy zatrudnienia w danych."
+          },
+          "mianowanie": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Mianowanie"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "pierwsza_praca_w_sluzbie_cywilnej": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Pierwsza Praca W Sluzbie Cywilnej",
+            "description": "None: brak informacji (umowa na czas określony wymaga jej do wyboru procesu).",
+            "default": false
+          },
+          "przelozony": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Przelozony",
+            "description": "Imię i nazwisko (uzupełnia API)."
+          },
+          "zastepstwa": {
+            "items": {
+              "$ref": "#/components/schemas/Zastepstwo"
+            },
+            "type": "array",
+            "title": "Zastepstwa"
+          },
+          "opis_stanowiska": {
+            "$ref": "#/components/schemas/OpisStanowiska"
+          },
+          "poprzednie_oceny": {
+            "items": {
+              "$ref": "#/components/schemas/PoprzedniaOcena"
+            },
+            "type": "array",
+            "title": "Poprzednie Oceny"
+          },
+          "nieobecnosci": {
+            "items": {
+              "$ref": "#/components/schemas/Nieobecnosc"
+            },
+            "type": "array",
+            "title": "Nieobecnosci"
+          },
+          "uwagi": {
+            "items": {
+              "$ref": "#/components/schemas/Uwaga"
+            },
+            "type": "array",
+            "title": "Uwagi"
+          },
+          "zrodlo_przykladu": {
+            "type": "string",
+            "title": "Zrodlo Przykladu",
+            "description": "Przykładowy arkusz, z którego wyprowadzono stanowisko."
+          },
+          "znacznik": {
+            "type": "string",
+            "title": "Znacznik",
+            "default": "dane demonstracyjne"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "imie",
+          "nazwisko",
+          "stanowisko",
+          "komorka",
+          "przelozony_id",
+          "jednostka",
+          "kierownik_urzedu",
+          "liczba_podleglych",
+          "korpus",
+          "zatrudnienie",
+          "mianowanie",
+          "zastepstwa",
+          "opis_stanowiska",
+          "poprzednie_oceny",
+          "nieobecnosci",
+          "uwagi",
+          "zrodlo_przykladu"
+        ],
+        "title": "Profil",
+        "description": "Pełny profil pracownika z API kadrowego."
+      },
+      "Uwaga": {
+        "properties": {
+          "data": {
+            "type": "string",
+            "format": "date",
+            "title": "Data"
+          },
+          "rodzaj": {
+            "type": "string",
+            "enum": [
+              "uwaga",
+              "nagana"
+            ],
+            "title": "Rodzaj"
+          },
+          "tresc": {
+            "type": "string",
+            "title": "Tresc"
+          }
+        },
+        "type": "object",
+        "required": [
+          "data",
+          "rodzaj",
+          "tresc"
+        ],
+        "title": "Uwaga"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          },
+          "input": {
+            "title": "Input"
+          },
+          "ctx": {
+            "type": "object",
+            "title": "Context"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
+      },
+      "Zastepstwo": {
+        "properties": {
+          "zastepca_id": {
+            "type": "string",
+            "title": "Zastepca Id"
+          },
+          "zastepca": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Zastepca",
+            "description": "Imię i nazwisko (uzupełnia API)."
+          },
+          "od": {
+            "type": "string",
+            "format": "date",
+            "title": "Od"
+          },
+          "do": {
+            "type": "string",
+            "format": "date",
+            "title": "Do"
+          },
+          "powod": {
+            "type": "string",
+            "title": "Powod"
+          }
+        },
+        "type": "object",
+        "required": [
+          "zastepca_id",
+          "od",
+          "do",
+          "powod"
+        ],
+        "title": "Zastepstwo"
+      },
+      "Zatrudnienie": {
+        "properties": {
+          "rodzaj": {
+            "type": "string",
+            "enum": [
+              "umowa_nieokreslony",
+              "umowa_okreslony",
+              "mianowanie"
+            ],
+            "title": "Rodzaj",
+            "description": "Podstawa zatrudnienia."
+          },
+          "data_nawiazania": {
+            "type": "string",
+            "format": "date",
+            "title": "Data Nawiazania",
+            "description": "Data nawiązania stosunku pracy w służbie cywilnej."
+          },
+          "data_na_stanowisku": {
+            "type": "string",
+            "format": "date",
+            "title": "Data Na Stanowisku"
+          }
+        },
+        "type": "object",
+        "required": [
+          "rodzaj",
+          "data_nawiazania",
+          "data_na_stanowisku"
+        ],
+        "title": "Zatrudnienie"
+      }
+    }
+  }
+}

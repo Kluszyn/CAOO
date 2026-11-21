@@ -1,0 +1,409 @@
+{
+  "_opis": "Odpowiedzi zapasowe przygotowane ręcznie (mapowanie-demo.yaml), nie przez model.",
+  "275a8adb7a3f189868cdd8aaf62b27ebc0f78519f5d42931de4ee43c32004243": {
+    "cytaty": [
+      {
+        "fragment_id": "osp:K-001:zadanie:1",
+        "cytat": "Kierowanie pracą urzędu"
+      }
+    ],
+    "wybor": [
+      "zarzadzanie-ludzmi",
+      "zarzadzanie-strategiczne",
+      "podejmowanie-decyzji"
+    ],
+    "tresc": null
+  },
+  "0fd7ad48e6e8378237adfaa366583c7bde1a909ba9bb10b0ce4e6883ccbf1c0a": {
+    "cytaty": [
+      {
+        "fragment_id": "osp:K-001:zadanie:2",
+        "cytat": "Nadzór nad kontrolą weterynaryjną na granicy"
+      }
+    ],
+    "wybor": [
+      "rzetelnosc",
+      "podejmowanie-decyzji"
+    ],
+    "tresc": null
+  },
+  "fb4d6d0594235a7d8793570adc20ef32af9ad1a4a559efb201ded388b73cfceb": {
+    "cytaty": [
+      {
+        "fragment_id": "osp:K-001:zadanie:3",
+        "cytat": "Współpraca z inspekcją wojewódzką"
+      }
+    ],
+    "wybor": [
+      "wspolpraca",
+      "komunikacja"
+    ],
+    "tresc": null
+  },
+  "1f9159723c8fd73f4575d430527109f3fa06c5d24e46c544eb0802688f0ed4e0": {
+    "cytaty": [
+      {
+        "fragment_id": "osp:K-001:wymaganie:1",
+        "cytat": "Prawo wykonywania zawodu lekarza weterynarii"
+      }
+    ],
+    "wybor": [
+      "wykorzystywanie-wiedzy"
+    ],
+    "tresc": null
+  },
+  "8a22a338314dedc008ddd23fd3cfcdc2368118a97443f760af2ff64346274aa0": {
+    "cytaty": [
+      {
+        "fragment_id": "osp:K-001:wymaganie:2",
+        "cytat": "5 lat doświadczenia kierowniczego"
+      }
+    ],
+    "wybor": [
+      "zarzadzanie-ludzmi"
+    ],
+    "tresc": null
+  },
+  "47634cd2093b81bd2094f95c46e3514e93b4f22534fdf6e59d95d802a3291e16": {
+    "cytaty": [
+      {
+        "fragment_id": "osp:K-002:zadanie:1",
+        "cytat": "Planowanie i rozdział zadań w wydziale"
+      }
+    ],
+    "wybor": [
+      "organizacja-pracy",
+      "zarzadzanie-ludzmi"
+    ],
+    "tresc": null
+  },
+  "2e0fb523637da4c8685af6ff76dad735d1bbc76af621db7bcdaca164c249cff4": {
+    "cytaty": [
+      {
+        "fragment_id": "osp:K-002:zadanie:2",
+        "cytat": "Koordynacja projektów rozwojowych"
+      }
+    ],
+    "wybor": [
+      "organizacja-pracy",
+      "wspolpraca"
+    ],
+    "tresc": null
+  },
+  "9ec47731010bd3151bf7ec41e7ac528e9cee85c1855bc9f008d3cb4911b669f1": {
+    "cytaty": [
+      {
+        "fragment_id": "osp:K-002:zadanie:3",
+        "cytat": "Ocena pracowników wydziału"
+      }
+    ],
+    "wybor": [
+      "zarzadzanie-ludzmi"
+    ],
+    "tresc": null
+  },
+  "77698701c1bbad454fd70245838094bbfc8ac6a915b2066ed3654b2621db4a9d": {
+    "cytaty": [
+      {
+        "fragment_id": "osp:K-002:wymaganie:1",
+        "cytat": "Wykształcenie wyższe"
+      }
+    ],
+    "wybor": [],
+    "tresc": null
+  },
+  "7573a2849add3fd4c9396f51d99702324ae0ba634ebd35a0f74d18d02f3346a5": {
+    "cytaty": [
+      {
+        "fragment_id": "osp:K-002:wymaganie:2",
+        "cytat": "3 lata doświadczenia w zarządzaniu zespołem"
+      }
+    ],
+    "wybor": [
+      "zarzadzanie-ludzmi"
+    ],
+    "tresc": null
+  },
+  "07afab4edca56a4a92af1dff640169054f573dbf950750c7d7a9943660020d82": {
+    "cytaty": [
+      {
+        "fragment_id": "osp:K-003:zadanie:1",
+        "cytat": "Opracowywanie analiz i opinii"
+      }
+    ],
+    "wybor": [
+      "myslenie-analityczne",
+      "wykorzystywanie-wiedzy"
+    ],
+    "tresc": null
+  },
+  "d6224cc13f38fb540bba457fd1f47292ba5b858245f2fd6af394786da7ddfb8c": {
+    "cytaty": [
+      {
+        "fragment_id": "osp:K-003:zadanie:2",
+        "cytat": "Przygotowywanie projektów pism"
+      }
+    ],
+    "wybor": [
+      "komunikacja",
+      "rzetelnosc"
+    ],
+    "tresc": null
+  },
+  "e954ea3a8661bbd35851ab9e1bdb0804e6ecd3fada46924e66f89968b05b2fba": {
+    "cytaty": [
+      {
+        "fragment_id": "osp:K-003:zadanie:3",
+        "cytat": "Udział w spotkaniach z partnerami"
+      }
+    ],
+    "wybor": [
+      "komunikacja",
+      "wspolpraca",
+      "negocjowanie"
+    ],
+    "tresc": null
+  },
+  "685d5a8613fb0dfa1b2a4f047cac297c1e2a82d95982f8bee45d97cf8d97cb08": {
+    "cytaty": [
+      {
+        "fragment_id": "osp:K-003:wymaganie:1",
+        "cytat": "Wykształcenie wyższe ekonomiczne lub prawnicze"
+      }
+    ],
+    "wybor": [
+      "wykorzystywanie-wiedzy"
+    ],
+    "tresc": null
+  },
+  "6c981314a80ead8a335390d6cfc50cd12470d241a13ccc602eea5ad333f6c798": {
+    "cytaty": [
+      {
+        "fragment_id": "osp:K-003:wymaganie:2",
+        "cytat": "Znajomość języka angielskiego"
+      }
+    ],
+    "wybor": [
+      "komunikacja"
+    ],
+    "tresc": null
+  },
+  "0650357e494b60a2ecba3cbe647c328f985b3d2be7b65324005db1ee0b2722dd": {
+    "cytaty": [
+      {
+        "fragment_id": "osp:K-004:zadanie:1",
+        "cytat": "Monitorowanie incydentów bezpieczeństwa"
+      }
+    ],
+    "wybor": [
+      "sytuacje-kryzysowe",
+      "rzetelnosc"
+    ],
+    "tresc": null
+  },
+  "533cf7289237e3a7729387fed15cae56a0948b5d6d07c96303bc8bf8371b4a18": {
+    "cytaty": [
+      {
+        "fragment_id": "osp:K-004:zadanie:2",
+        "cytat": "Przygotowywanie procedur bezpieczeństwa"
+      }
+    ],
+    "wybor": [
+      "rzetelnosc",
+      "myslenie-analityczne"
+    ],
+    "tresc": null
+  },
+  "fdda68acabe4f2c19a999552761fee840c8604eadba647acf86011037ded3b45": {
+    "cytaty": [
+      {
+        "fragment_id": "osp:K-004:zadanie:3",
+        "cytat": "Szkolenie pracowników"
+      }
+    ],
+    "wybor": [
+      "wystapienia-publiczne",
+      "komunikacja"
+    ],
+    "tresc": null
+  },
+  "810266c85f6150acfd16a6e6632d632e7ff8f8204a3e078b493449dc824cb884": {
+    "cytaty": [
+      {
+        "fragment_id": "osp:K-004:wymaganie:1",
+        "cytat": "Wykształcenie wyższe techniczne"
+      }
+    ],
+    "wybor": [],
+    "tresc": null
+  },
+  "450df7e8864a2f4b8c2cb37c4239f249daec035dfd780926c5955883cdc69c3a": {
+    "cytaty": [
+      {
+        "fragment_id": "osp:K-004:wymaganie:2",
+        "cytat": "Certyfikat z bezpieczeństwa IT"
+      }
+    ],
+    "wybor": [
+      "wykorzystywanie-wiedzy"
+    ],
+    "tresc": null
+  },
+  "38d86b0505ce1c56a19edb8a90c7015e74d19682c704061afd7aae7e72d3b978": {
+    "cytaty": [
+      {
+        "fragment_id": "osp:K-005:zadanie:1",
+        "cytat": "Przyjmowanie dokumentacji do archiwum"
+      }
+    ],
+    "wybor": [
+      "rzetelnosc",
+      "organizacja-pracy"
+    ],
+    "tresc": null
+  },
+  "e5d28992214b1c89f3f157c50068357a193796fcabcf12632274218326a5b95c": {
+    "cytaty": [
+      {
+        "fragment_id": "osp:K-005:zadanie:2",
+        "cytat": "Udostępnianie akt"
+      }
+    ],
+    "wybor": [
+      "orientacja-na-klienta",
+      "rzetelnosc"
+    ],
+    "tresc": null
+  },
+  "c9e2445f3c1a762befe31328dd42a4721b3d769914837ebb4a01021a645f225d": {
+    "cytaty": [
+      {
+        "fragment_id": "osp:K-005:zadanie:3",
+        "cytat": "Brakowanie dokumentacji"
+      }
+    ],
+    "wybor": [
+      "rzetelnosc"
+    ],
+    "tresc": null
+  },
+  "36be1847b635449c8c281acc32652994292cd9c30e98d46a53ec7b1add462e95": {
+    "cytaty": [
+      {
+        "fragment_id": "osp:K-005:wymaganie:1",
+        "cytat": "Wykształcenie średnie"
+      }
+    ],
+    "wybor": [],
+    "tresc": null
+  },
+  "3ad84e1e55ea292ea4b4bc97e3dca0a0ebfc5682afd4dd6bce543a022e47ca8a": {
+    "cytaty": [
+      {
+        "fragment_id": "osp:K-005:wymaganie:2",
+        "cytat": "Kurs archiwalny"
+      }
+    ],
+    "wybor": [
+      "wykorzystywanie-wiedzy"
+    ],
+    "tresc": null
+  },
+  "c118d85225e868200e16df75f606cf9f3d66ad67b8a7a7502307c7edbe344186": {
+    "cytaty": [
+      {
+        "fragment_id": "osp:K-006:zadanie:1",
+        "cytat": "Walidacja metod badawczych"
+      }
+    ],
+    "wybor": [
+      "myslenie-analityczne",
+      "rzetelnosc"
+    ],
+    "tresc": null
+  },
+  "ab6efd811978891467cdc33c19b43da1d47f5f0741629fe79ef248d612cca156": {
+    "cytaty": [
+      {
+        "fragment_id": "osp:K-006:zadanie:2",
+        "cytat": "Audyty wewnętrzne"
+      }
+    ],
+    "wybor": [
+      "rzetelnosc",
+      "komunikacja"
+    ],
+    "tresc": null
+  },
+  "96892a1489fe9b72f54d61a8b779fd78b16bd275d1d98e749bda0f1ad20c9175": {
+    "cytaty": [
+      {
+        "fragment_id": "osp:K-006:zadanie:3",
+        "cytat": "Raportowanie wyników jakości"
+      }
+    ],
+    "wybor": [
+      "komunikacja",
+      "myslenie-analityczne"
+    ],
+    "tresc": null
+  },
+  "79752b83f5000d9db35010f7e71afa05e9bd0ad227d09bddf3cd0abdadeb2798": {
+    "cytaty": [
+      {
+        "fragment_id": "osp:K-006:wymaganie:1",
+        "cytat": "Wykształcenie wyższe chemiczne"
+      }
+    ],
+    "wybor": [],
+    "tresc": null
+  },
+  "3d80a344ddc1394a080de794f926be9c0fafeee6a6d381e199f5431e71355007": {
+    "cytaty": [
+      {
+        "fragment_id": "osp:K-006:wymaganie:2",
+        "cytat": "Znajomość normy ISO 17025"
+      }
+    ],
+    "wybor": [
+      "wykorzystywanie-wiedzy"
+    ],
+    "tresc": null
+  },
+  "feea96f0e7db44ddd79aa76ee49626c5429c771eb222269de1df57976506c6b4": {
+    "cytaty": [
+      {
+        "fragment_id": "osp:K-007:zadanie:1",
+        "cytat": "Przekłady pisemne"
+      }
+    ],
+    "wybor": [
+      "komunikacja",
+      "rzetelnosc"
+    ],
+    "tresc": null
+  },
+  "33618a4aa5add9f39be3d44325fd582771a3feb81e75e4157723fe2c644146b5": {
+    "cytaty": [
+      {
+        "fragment_id": "osp:K-007:zadanie:2",
+        "cytat": "Weryfikacja terminologii"
+      }
+    ],
+    "wybor": [
+      "rzetelnosc",
+      "wykorzystywanie-wiedzy"
+    ],
+    "tresc": null
+  },
+  "c0323009d48ca16c6bc190b6682395a29cb63544c5625f355dae2e407a4f20be": {
+    "cytaty": [
+      {
+        "fragment_id": "osp:K-007:wymaganie:1",
+        "cytat": "Wykształcenie wyższe filologiczne"
+      }
+    ],
+    "wybor": [],
+    "tresc": null
+  }
+}

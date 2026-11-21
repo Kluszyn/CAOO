@@ -1,0 +1,88 @@
+# Pytania pomocnicze wyprowadzone z opisów kryteriów w załączniku nr 1.
+# Numer pytania w danym kryterium jest jego identyfikatorem w zapisanych ocenach.
+wersja: robocza-v1
+pytania:
+  komunikacja:
+    - Czy osoba oceniana skupiała się na wypowiedzi rozmówcy?
+    - Czy sprawdzała, czy obie strony tak samo rozumieją ważne ustalenia?
+    - Czy wypowiadała się jasno i dopasowywała język do rozmówcy?
+    - Czy pisemne komunikaty były precyzyjne i dopasowane do odbiorcy?
+    - Czy dobierała argumenty odpowiednie do omawianej sytuacji?
+  kreatywnosc:
+    - Czy zgłaszała nowe sposoby rozwiązania napotkanego problemu?
+    - Czy samodzielnie opracowywała rozwiązania dla nowych zadań?
+    - Czy próbowała innego podejścia, gdy znany sposób nie działał?
+    - Czy wykorzystywała znane narzędzia w nowy sposób w swoich zadaniach?
+    - Czy znajdowała drugi sposób wykonania zadania wymagającego nieschematycznego podejścia?
+  negocjowanie:
+    - Czy przygotowywała projekt stanowiska przed negocjacjami?
+    - Czy określała zakres możliwych ustępstw przed rozmową?
+    - Czy przygotowywała argumenty na poparcie stanowiska?
+    - Czy stosowała techniki negocjacyjne dobrane do przebiegu rozmowy?
+    - Czy wynik negocjacji był akceptowany przez przełożonego?
+  organizacja-pracy:
+    - Czy przed rozpoczęciem określała sposób wykonania zadania?
+    - Czy ustalała kolejność zadań według ich wagi i pilności?
+    - Czy dobierała zasoby potrzebne do wykonania zadania?
+    - Czy dostosowywała plan do zmieniających się okoliczności?
+    - Czy kontynuowała pracę nad zadaniem mimo napotkanych przeszkód?
+  orientacja-na-klienta:
+    - Czy zwracała się do interesantów z taktem i szacunkiem?
+    - Czy wysłuchiwała interesanta, zanim zaproponowała dalsze działanie?
+    - Czy zadawała pytania pozwalające ustalić rzeczywistą potrzebę interesanta?
+    - Czy proponowała rozwiązanie odpowiadające rozpoznanej potrzebie?
+    - Czy reagowała, gdy interesant sygnalizował, że zaproponowane rozwiązanie nie wystarcza?
+  podejmowanie-decyzji:
+    - Czy zbierała i analizowała informacje przed podjęciem decyzji?
+    - Czy rozważała więcej niż jeden sposób działania?
+    - Czy oceniała ryzyko rozważanych rozwiązań?
+    - Czy podejmowała decyzję w sprawach należących do jej odpowiedzialności?
+    - Czy brała odpowiedzialność za skutki decyzji, gdy ujawnił się jej rezultat?
+  sytuacje-kryzysowe:
+    - Czy rozpoznawała sytuacje wymagające reakcji kryzysowej?
+    - Czy informowała odpowiednie osoby po rozpoznaniu kryzysu?
+    - Czy podejmowała konkretne działania służące rozwiązaniu kryzysu?
+    - Czy sprawdzała, czy podjęte działania pomogły rozwiązać kryzys?
+    - Czy po kryzysie wskazywała wnioski przydatne w podobnej sytuacji?
+  rzetelnosc:
+    - Czy sprawdzała, które standardy obowiązują przy danym zadaniu?
+    - Czy wykonywała zadanie zgodnie z właściwymi przepisami i procedurami?
+    - Czy weryfikowała jakość rezultatu przed przekazaniem go dalej?
+    - Czy usuwała stwierdzone braki przed oddaniem pracy?
+    - Czy dotrzymywała ustalonych terminów wykonania zadań?
+  myslenie-analityczne:
+    - Czy określała, których informacji potrzebuje do analizy zadania?
+    - Czy odróżniała informacje istotne od pobocznych?
+    - Czy wskazywała zależności pomiędzy informacjami z różnych źródeł?
+    - Czy formułowała wnioski na podstawie dostrzeżonych zależności?
+    - Czy potrafiła powiązać sformułowany wniosek z konkretnymi danymi z analizy?
+  wykorzystywanie-wiedzy:
+    - Czy stosowała wiedzę zawodową podczas realizacji zadań?
+    - Czy wyszukiwała informacje potrzebne do wykonania nowego zadania?
+    - Czy korzystała z dobrych praktyk i doświadczeń innych osób?
+    - Czy doskonaliła umiejętności potrzebne na zajmowanym stanowisku?
+    - Czy wykorzystywała dostępne technologie i źródła informacji do rozwiązywania problemów?
+  wspolpraca:
+    - Czy włączała się do wspólnych działań, gdy mogła pomóc zespołowi?
+    - Czy przekazywała osobom zaangażowanym informacje potrzebne do pracy?
+    - Czy brała pod uwagę opinie innych osób podczas wspólnych ustaleń?
+    - Czy okazywała otwartość i dostrzegała wkład innych osób w wynik zespołu?
+    - Czy dzieliła się wiedzą i doświadczeniem przy wspólnych zadaniach?
+  wystapienia-publiczne:
+    - Czy dobierała środki przekazu odpowiednie do tematu i odbiorców?
+    - Czy prowadziła prezentację w sposób czytelny dla audytorium?
+    - Czy nawiązywała kontakt z odbiorcami i reagowała na ich potrzeby?
+    - Czy mieściła wystąpienie w ustalonym czasie, także po zmianie jego przebiegu?
+    - Czy odpowiadała rzeczowo mimo krytyki lub trudnych pytań?
+  zarzadzanie-ludzmi:
+    - Czy delegując zadanie, określała odpowiedzialność i potrzebne uprawnienia?
+    - Czy sprawdzała postęp prac i reagowała na zauważone trudności?
+    - Czy udzielała informacji zwrotnej opartej na zaangażowaniu i sposobie realizacji zadań?
+    - Czy podejmowała działania, by motywować zespół lub rozwiązywać jego konflikty?
+    - Czy uzgadniała działania rozwojowe z pracownikami i sprawdzała ich realizację?
+  zarzadzanie-strategiczne:
+    - Czy formułowała wizję długofalowego działania organizacji?
+    - Czy cele strategiczne uwzględniały sytuację organizacji i jej otoczenia?
+    - Czy przy wyznaczaniu celów uwzględniała istniejące strategie rozwoju?
+    - Czy przekładała cele strategiczne na konkretne cele operacyjne?
+    - Czy wskazywała ryzyka przy planowaniu działań o znaczeniu strategicznym?

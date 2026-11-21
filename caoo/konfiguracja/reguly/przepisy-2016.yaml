@@ -1,0 +1,618 @@
+# Reguły – wersja przepisów 2016. Wersjonowana konfiguracja: każda zmiana przepisów
+# to nowy plik z nowym `wersja` i `obowiazuje_od`; zakończone oceny zapisują użytą wersję.
+# Każda reguła ma adnotację; cytaty sprawdza `caoo-waliduj` (CI).
+
+wersja: przepisy-2016-v1
+obowiazuje_od: 2016-04-23
+adnotacje_wersji:
+  id: wersja.przepisy-2016
+  nazwa: Data obowiązywania wersji
+  opis: Data obowiązywania = dzień po upływie 14 dni od ogłoszenia (8.04.2016).
+  adnotacje:
+    - kategoria: PRZEPIS
+      doc_id: rozp-oceny-okresowe
+      lokalizator: § 14
+      strona: 4
+      cytat_dosłowny: Rozporządzenie wchodzi w życie po upływie 14 dni od dnia ogłoszenia.
+    - kategoria: PRZEPIS
+      doc_id: rozp-oceny-okresowe
+      lokalizator: nagłówek Dz.U.
+      strona: 1
+      cytat_dosłowny: Warszawa, dnia 8 kwietnia 2016 r.
+
+# Skala § 11 w formacie dla silnika skali z caoo-core (KonfiguracjaSkali).
+skala:
+  dozwolone_oceny: [1, 3, 5, 7, 9]
+  regula_sredniej: skala.srednia
+  wynik_domyslny: NEGATYWNA
+  regula_domyslna: wynik.negatywna-poziom
+  progi:
+    - {poziom: znacznie poniżej oczekiwań, regula: skala.progi, minimum: 1, maksimum: 2}
+    - {poziom: poniżej oczekiwań, regula: skala.progi, minimum: 2, maksimum: 4, domkniety_od_dolu: false}
+    - {poziom: na poziomie oczekiwań, regula: skala.progi, minimum: 4, maksimum: 6, domkniety_od_dolu: false}
+    - {poziom: powyżej oczekiwań, regula: skala.progi, minimum: 6, maksimum: 8, domkniety_od_dolu: false}
+    - {poziom: znacznie powyżej oczekiwań, regula: skala.progi, minimum: 8, maksimum: 9, domkniety_od_dolu: false}
+  reguly_rozstrzygajace:
+    - regula: wynik.negatywna-1pkt
+      wynik: NEGATYWNA
+      warunki: [{ocena: 1, operator: ">=", liczba: 1}]
+    - regula: wynik.pozytywna
+      wynik: POZYTYWNA
+      warunki: [{srednia: ">", wartosc: 4}]
+
+reguly:
+  - id: skala.oceny-czastkowe
+    nazwa: Skala ocen cząstkowych
+    opis: Każde kryterium dostaje 1, 3, 5, 7 albo 9 punktów.
+    adnotacje:
+      - kategoria: PRZEPIS
+        doc_id: rozp-oceny-okresowe
+        lokalizator: § 11 ust. 1 pkt 1
+        strona: 3
+        cytat_dosłowny: >-
+          a) znacznie poniżej oczekiwań – 1 punkt, b) poniżej oczekiwań – 3 punkty, c) na poziomie
+          oczekiwań – 5 punktów, d) powyżej oczekiwań – 7 punktów, e) znacznie powyżej oczekiwań –
+          9 punktów;
+
+  - id: skala.srednia
+    nazwa: Średnia ze wszystkich ocen cząstkowych
+    opis: >-
+      Ogólny poziom to średnia arytmetyczna ze wszystkich ocen cząstkowych, także z kryteriów
+      dodatkowych (inaczej niż w zautomatyzowanym Excelu).
+    adnotacje:
+      - kategoria: PRZEPIS
+        doc_id: rozp-oceny-okresowe
+        lokalizator: § 11 ust. 1 pkt 2
+        strona: 3
+        cytat_dosłowny: >-
+          przez wyliczenie średniej arytmetycznej z ocen cząstkowych
+      - kategoria: PRZEPIS
+        doc_id: rozp-oceny-okresowe
+        lokalizator: § 11 ust. 1 pkt 1
+        strona: 3
+        cytat_dosłowny: >-
+          każdego z kryteriów obowiązkowych i kryteriów dodatkowych, jeżeli zostały wybrane
+
+  - id: skala.progi
+    nazwa: Progi ogólnego poziomu
+    opis: Przedziały średniej dla pięciu poziomów.
+    adnotacje:
+      - kategoria: PRZEPIS
+        doc_id: rozp-oceny-okresowe
+        lokalizator: § 11 ust. 1 pkt 2
+        strona: 3
+        cytat_dosłowny: >-
+          a) znacznie poniżej oczekiwań – od 1 punktu do 2 punktów, b) poniżej oczekiwań – powyżej
+          2 punktów do 4 punktów, c) na poziomie oczekiwań – powyżej 4 punktów do 6 punktów,
+          d) powyżej oczekiwań – powyżej 6 punktów do 8 punktów, e) znacznie powyżej oczekiwań –
+          powyżej 8 punktów do 9 punktów;
+
+  - id: wynik.negatywna-1pkt
+    nazwa: Ocena cząstkowa znacznie poniżej oczekiwań ⇒ ocena negatywna
+    opis: Jedno kryterium na 1 pkt daje ocenę negatywną niezależnie od średniej.
+    adnotacje:
+      - kategoria: PRZEPIS
+        doc_id: rozp-oceny-okresowe
+        lokalizator: § 11 ust. 1 pkt 4
+        strona: 3
+        cytat_dosłowny: >-
+          a także w przypadku uzyskania przez ocenianego co najmniej jednej oceny cząstkowej na
+          poziomie znacznie poniżej oczekiwań;
+
+  - id: wynik.pozytywna
+    nazwa: Ocena pozytywna
+    opis: Średnia powyżej 4 (poziom co najmniej „na poziomie oczekiwań”) i żadnej oceny 1 pkt.
+    adnotacje:
+      - kategoria: PRZEPIS
+        doc_id: rozp-oceny-okresowe
+        lokalizator: § 11 ust. 1 pkt 3
+        strona: 3
+        cytat_dosłowny: >-
+          znacznie powyżej oczekiwań, powyżej oczekiwań albo na poziomie oczekiwań, pod warunkiem
+          nieuzyskania przez ocenianego żadnej z ocen cząstkowych na poziomie znacznie poniżej
+          oczekiwań;
+
+  - id: wynik.negatywna-poziom
+    nazwa: Ocena negatywna przy poziomie poniżej oczekiwań
+    opis: Średnia do 4 pkt daje ocenę negatywną.
+    adnotacje:
+      - kategoria: PRZEPIS
+        doc_id: rozp-oceny-okresowe
+        lokalizator: § 11 ust. 1 pkt 4
+        strona: 3
+        cytat_dosłowny: >-
+          poniżej oczekiwań albo znacznie poniżej oczekiwań
+
+  # --- Wybór procesu i arkusza (#11) ---------------------------------------------------
+
+  - id: proces.okresowa
+    nazwa: Ocena okresowa
+    opis: Urzędnik (mianowanie) albo pracownik na czas nieokreślony podlega ocenie okresowej.
+    adnotacje:
+      - kategoria: PRZEPIS
+        doc_id: ustawa-sc
+        lokalizator: art. 81 ust. 1
+        strona: 39
+        cytat_dosłowny: >-
+          Urzędnik służby cywilnej oraz pracownik służby cywilnej zatrudniony na podstawie umowy
+          o pracę na czas nieokreślony podlega ocenie okresowej
+
+  - id: proces.pierwsza
+    nazwa: Pierwsza ocena w służbie cywilnej
+    opis: >-
+      Osoba podejmująca po raz pierwszy pracę w służbie cywilnej (umowa na czas określony
+      12 miesięcy) podlega pierwszej ocenie – to osobny proces, nie „pierwsza ocena okresowa”.
+    adnotacje:
+      - kategoria: PRZEPIS
+        doc_id: ustawa-sc
+        lokalizator: art. 37 ust. 1
+        strona: 24
+        cytat_dosłowny: >-
+          Osoba zatrudniona na podstawie umowy o pracę, o której mowa w art. 35 ust. 3, podlega
+          pierwszej ocenie w służbie cywilnej.
+      - kategoria: PRZEPIS
+        doc_id: ustawa-sc
+        lokalizator: art. 35 ust. 3
+        strona: 23
+        cytat_dosłowny: >-
+          W przypadku osób podejmujących po raz pierwszy pracę w służbie cywilnej umowę o pracę
+          zawiera się na czas określony wynoszący 12 miesięcy.
+      - kategoria: BRAK_ŹRÓDŁA
+        uzasadnienie: >-
+          W „materiały” nie ma rozporządzenia o pierwszej ocenie (art. 38 ust. 4) – szczegóły
+          procesu pierwszej oceny są oznaczone jako brak źródła (#19).
+
+  - id: proces.zastepstwo
+    nazwa: Zatrudnienie w celu zastępstwa
+    opis: >-
+      Osoba na zastępstwo MOŻE podlegać pierwszej ocenie – decyzja nie wynika z samych danych
+      kadrowych, więc system nie zgaduje.
+    adnotacje:
+      - kategoria: PRZEPIS
+        doc_id: ustawa-sc
+        lokalizator: art. 37 ust. 2
+        strona: 24
+        cytat_dosłowny: >-
+          Pierwszej ocenie w służbie cywilnej, na zasadach określonych w art. 38, może podlegać
+          osoba zatrudniona w celu zastępstwa nieobecnego członka korpusu służby cywilnej.
+
+  - id: arkusz.a
+    nazwa: Arkusz A
+    opis: Kierownik urzędu.
+    adnotacje:
+      - kategoria: PRZEPIS
+        doc_id: rozp-oceny-okresowe
+        lokalizator: § 3 ust. 2
+        strona: 1
+        cytat_dosłowny: >-
+          Arkusz A, którego wzór jest określony w załączniku nr 2 do rozporządzenia, służy do
+          sporządzenia oceny zatrudnionego na stanowisku kierownika urzędu
+
+  - id: arkusz.b
+    nazwa: Arkusz B
+    opis: Stanowisko, na którym praca polega na bezpośrednim kierowaniu pracownikami.
+    adnotacje:
+      - kategoria: PRZEPIS
+        doc_id: rozp-oceny-okresowe
+        lokalizator: § 3 ust. 3
+        strona: 1
+        cytat_dosłowny: >-
+          Arkusz B, którego wzór jest określony w załączniku nr 3 do rozporządzenia, służy do
+          sporządzenia oceny zatrudnionego na stanowisku, na którym praca polega na bezpośrednim
+          kierowaniu pracownikami
+
+  - id: arkusz.c
+    nazwa: Arkusz C
+    opis: Pozostałe stanowiska.
+    adnotacje:
+      - kategoria: PRZEPIS
+        doc_id: rozp-oceny-okresowe
+        lokalizator: § 3 ust. 4
+        strona: 1
+        cytat_dosłowny: >-
+          Arkusz C, którego wzór jest określony w załączniku nr 4 do rozporządzenia, służy do
+          sporządzenia oceny zatrudnionego na innym stanowisku pracy niż stanowiska wymienione
+          w ust. 2 i 3.
+
+  # --- Kryteria i termin (#12) -------------------------------------------------------------
+
+  - id: kryteria.obowiazkowe-a
+    nazwa: Kryteria obowiązkowe – arkusz A
+    opis: Kierownik urzędu – 6 kryteriów obowiązkowych.
+    adnotacje:
+      - kategoria: PRZEPIS
+        doc_id: rozp-oceny-okresowe
+        lokalizator: § 4 ust. 1
+        strona: 1
+        cytat_dosłowny: >-
+          1) zarządzanie ludźmi; 2) podejmowanie decyzji i odpowiedzialność; 3) organizacja pracy
+          i orientacja na osiąganie celów; 4) współpraca; 5) komunikacja; 6) zarządzanie strategiczne.
+
+  - id: kryteria.obowiazkowe-b
+    nazwa: Kryteria obowiązkowe – arkusz B
+    opis: Stanowisko kierujące pracownikami – 5 kryteriów obowiązkowych.
+    adnotacje:
+      - kategoria: PRZEPIS
+        doc_id: rozp-oceny-okresowe
+        lokalizator: § 4 ust. 2
+        strona: 2
+        cytat_dosłowny: >-
+          Ocenianego zatrudnionego na stanowisku, o którym mowa w § 3 ust. 3, ocenia się, stosując
+          następujące kryteria obowiązkowe: 1) zarządzanie ludźmi; 2) podejmowanie decyzji
+          i odpowiedzialność; 3) organizacja pracy i orientacja na osiąganie celów; 4) współpraca;
+          5) komunikacja.
+
+  - id: kryteria.obowiazkowe-c
+    nazwa: Kryteria obowiązkowe – arkusz C
+    opis: Pozostałe stanowiska – 5 kryteriów obowiązkowych.
+    adnotacje:
+      - kategoria: PRZEPIS
+        doc_id: rozp-oceny-okresowe
+        lokalizator: § 4 ust. 3
+        strona: 2
+        cytat_dosłowny: >-
+          Ocenianego zatrudnionego na stanowisku, o którym mowa w § 3 ust. 4, ocenia się, stosując
+          następujące kryteria obowiązkowe: 1) wykorzystywanie wiedzy i doskonalenie zawodowe;
+          2) rzetelność; 3) organizacja pracy i orientacja na osiąganie celów; 4) współpraca;
+          5) komunikacja.
+
+  - id: kryteria.limit-dodatkowych
+    nazwa: Najwyżej 3 kryteria dodatkowe
+    opis: Oceniający może wybrać z wykazu (zał. 1) nie więcej niż 3 kryteria dodatkowe.
+    adnotacje:
+      - kategoria: PRZEPIS
+        doc_id: rozp-oceny-okresowe
+        lokalizator: § 5 ust. 2
+        strona: 2
+        cytat_dosłowny: >-
+          Oceniający może wybrać z wykazu kryteriów oceny nie więcej niż 3 kryteria dodatkowe,
+          najistotniejsze ze względu na charakter obowiązków wynikających z opisu stanowiska pracy
+          zajmowanego przez ocenianego.
+
+  - id: kryteria.propozycje
+    nazwa: Propozycje kryteriów dodatkowych z zadań stanowiska
+    opis: >-
+      System dopasowuje zadania z opisu stanowiska do słów kluczowych kryteriów i proponuje
+      najwyżej 3. To propozycja – wybiera oceniający.
+    adnotacje:
+      - kategoria: FUNKCJA_APLIKACJI
+        uzasadnienie: >-
+          § 5 ust. 2 każe wybierać kryteria „ze względu na charakter obowiązków wynikających z opisu
+          stanowiska”; dopasowanie słów kluczowych tylko podpowiada, które zadania pasują.
+        zatwierdził: osoba A (integrator)
+
+  - id: termin.kryteria-30
+    nazwa: Termin ustalenia kryteriów – 30 dni
+    opis: 30 dni od sporządzenia poprzedniej oceny albo od zatrudnienia na czas nieokreślony.
+    adnotacje:
+      - kategoria: PRZEPIS
+        doc_id: rozp-oceny-okresowe
+        lokalizator: § 7 pkt 1
+        strona: 2
+        cytat_dosłowny: >-
+          30 dni od dnia sporządzenia na piśmie poprzedniej oceny lub od dnia zatrudnienia
+          ocenianego na czas nieokreślony;
+      - kategoria: OBJAŚNIENIE_MATERIAŁU
+        doc_id: liczenie-terminow
+        cytat_dosłowny: >-
+          przy obliczaniu tego terminu nie uwzględnia się dnia, w którym zdarzenie nastąpiło.
+
+  - id: termin.kryteria-7
+    nazwa: Termin ustalenia kryteriów – 7 dni po ocenie negatywnej
+    opis: 7 dni od sporządzenia negatywnej oceny.
+    adnotacje:
+      - kategoria: PRZEPIS
+        doc_id: rozp-oceny-okresowe
+        lokalizator: § 7 pkt 2
+        strona: 2
+        cytat_dosłowny: 7 dni od dnia sporządzenia na piśmie negatywnej oceny.
+
+  - id: termin.dzien-wolny
+    nazwa: Przesunięcie terminu z dnia wolnego
+    opis: Termin w sobotę, niedzielę lub święto upływa następnego dnia roboczego.
+    adnotacje:
+      - kategoria: OBJAŚNIENIE_MATERIAŁU
+        doc_id: liczenie-terminow
+        cytat_dosłowny: >-
+          Jeżeli koniec terminu wypada w dzień uznany za wolny od pracy (np. święto lub niedziela)
+          lub na sobotę, termin upływa następnego dnia, który nie jest dniem wolnym od pracy ani
+          sobotą
+
+  - id: kryteria.potwierdzenie
+    nazwa: Potwierdzenie przez ocenianego
+    opis: Oceniany potwierdza rozmowę i zapoznanie z kryteriami oraz terminem.
+    adnotacje:
+      - kategoria: PRZEPIS
+        doc_id: rozp-oceny-okresowe
+        lokalizator: § 6 ust. 2
+        strona: 2
+        cytat_dosłowny: >-
+          Oceniany potwierdza podpisem przeprowadzenie z nim rozmowy, o której mowa w § 5 ust. 1,
+          oraz zapoznanie się z kryteriami oceny i terminem sporządzenia oceny na piśmie.
+
+  - id: termin.cykl-24-miesiace
+    nazwa: Termin oceny okresowej – 24 miesiące
+    opis: Termin podstawowy liczy się od sporządzenia poprzedniej oceny albo od początku zatrudnienia objętego oceną okresową.
+    adnotacje:
+      - kategoria: PRZEPIS
+        doc_id: ustawa-sc-wyciag
+        lokalizator: art. 81 ust. 4
+        cytat_dosłowny: Ocenę okresową sporządza się co 24 miesiące.
+      - kategoria: OBJAŚNIENIE_MATERIAŁU
+        doc_id: liczenie-terminow
+        cytat_dosłowny: a gdyby takiego dnia nie było – w ostatnim dniu tego miesiąca
+
+  - id: termin.ciaglosc-nieobecnosci
+    nazwa: Ciągłość usprawiedliwionych nieobecności
+    opis: Dni wolne pomiędzy usprawiedliwionymi nieobecnościami wliczają się do wspólnego okresu.
+    adnotacje:
+      - kategoria: OBJAŚNIENIE_MATERIAŁU
+        doc_id: liczenie-terminow
+        cytat_dosłowny: >-
+          Dni wolne od pracy, wypadające pomiędzy okresami usprawiedliwionej nieobecności,
+          nie przerywają ciągłości tej nieobecności
+
+  - id: termin.nieobecnosc-81-7
+    nazwa: Przedłużenie terminu o usprawiedliwioną nieobecność
+    opis: Gdy ciągła usprawiedliwiona nieobecność przekracza miesiąc, do terminu dolicza się cały okres.
+    adnotacje:
+      - kategoria: PRZEPIS
+        doc_id: ustawa-sc-wyciag
+        lokalizator: art. 81 ust. 7
+        cytat_dosłowny: >-
+          w pracy, trwającej dłużej niż miesiąc, termin, o którym mowa w ust. 4,
+          ulega przedłużeniu o czas tej nieobecności.
+
+  - id: termin.swieta-demo
+    nazwa: Kalendarz świąt – źródło spoza materiałów
+    opis: Daty świąt pochodzą z algorytmu demonstracyjnego i wersjonowanych wyjątków administratora. Źródło spoza materiałów.
+    adnotacje:
+      - kategoria: FUNKCJA_APLIKACJI
+        uzasadnienie: Algorytm świąt jest źródłem spoza materiałów (kalendarz demonstracyjny V1).
+        zatwierdził: Zakres specyfikacji V1 (#2, wymaganie 36)
+
+  - id: termin.ponowne-kryteria-9-1
+    nazwa: Ponowne ustalenie kryteriów po zmianie stanowiska
+    opis: Istotna zmiana obowiązków w ciągu 6 miesięcy uruchamia ponowne czynności w ciągu 30 dni. Termin oceny pozostaje ustalony.
+    adnotacje:
+      - kategoria: PRZEPIS
+        doc_id: rozp-oceny-okresowe
+        lokalizator: § 9 ust. 1
+        strona: 2
+        cytat_dosłowny: >-
+          w terminie 30 dni od zmiany stanowiska pracy ponownie dokonuje się czynności,
+          o których mowa w § 5 i § 6
+
+  - id: termin.okno-oceny-9-2
+    nazwa: Okno na sporządzenie oceny przy zmianie stanowiska
+    opis: Przy istotnej zmianie po upływie sześciu miesięcy stosuje się okno od 7 dni przed zmianą do 30 dni po zmianie.
+    adnotacje:
+      - kategoria: PRZEPIS
+        doc_id: rozp-oceny-okresowe
+        lokalizator: § 9 ust. 2
+        strona: 3
+        cytat_dosłowny: >-
+          nie później niż w terminie 30 dni od tej zmiany.
+
+  - id: termin.zmiana-oceniajacego-9-3
+    nazwa: Kryteria po zmianie oceniającego
+    opis: Nowa osoba ocenia według wcześniej wybranych kryteriów.
+    adnotacje:
+      - kategoria: PRZEPIS
+        doc_id: rozp-oceny-okresowe
+        lokalizator: § 9 ust. 3
+        strona: 3
+        cytat_dosłowny: ocena jest sporządzana na podstawie wybranych wcześniej kryteriów.
+
+  - id: termin.wniosek-zmiana-81-8
+    nazwa: Wniosek ocenianego o zmianę terminu
+    opis: Wniosek wymaga upływu ponad sześciu miesięcy oraz decyzji oceniającego.
+    adnotacje:
+      - kategoria: PRZEPIS
+        doc_id: ustawa-sc-wyciag
+        lokalizator: art. 81 ust. 8 pkt 4
+        cytat_dosłowny: złożenia przez ocenianego wniosku o zmianę terminu przeprowadzenia oceny
+      - kategoria: PRZEPIS
+        doc_id: ustawa-sc-wyciag
+        lokalizator: art. 81 ust. 8
+        cytat_dosłowny: >-
+          jeżeli od dnia sporządzenia ostatniej oceny okresowej upłynęło więcej niż 6 miesięcy
+
+  - id: termin.zawiadomienie-8
+    nazwa: Zawiadomienie o zmianie terminu
+    opis: Oceniający sporządza pisemne zawiadomienie i dołącza jego kopię do arkusza.
+    adnotacje:
+      - kategoria: PRZEPIS
+        doc_id: rozp-oceny-okresowe
+        lokalizator: § 8
+        strona: 2
+        cytat_dosłowny: Kopię pisma dołącza się do arkusza.
+
+  - id: termin.pytanie-zmiana-oceniajacego
+    nazwa: Podstawa zmiany terminu z inicjatywy oceniającego
+    opis: Jak udokumentować podstawę zmiany terminu z inicjatywy oceniającego i jakie informacje uznać za wystarczające w przypadkach z art. 81 ust. 8 pkt 1–3?
+    adnotacje:
+      - kategoria: BRAK_ŹRÓDŁA
+        uzasadnienie: Materiały nie określają sposobu potwierdzania okoliczności ani wymaganego zestawu dokumentów.
+
+  # --- Ocena i wynik (#13) -----------------------------------------------------------------
+
+  - id: wynik.uzasadnienie-negatywnej
+    nazwa: Uzasadnienie wymagane przy ocenie negatywnej
+    opis: Bez uzasadnienia oceny negatywnej nie da się zatwierdzić.
+    adnotacje:
+      - kategoria: PRZEPIS
+        doc_id: rozp-oceny-okresowe
+        lokalizator: § 11 ust. 3
+        strona: 3
+        cytat_dosłowny: >-
+          Oceniający sporządza uzasadnienie przyznanej oceny w przypadku przyznania oceny
+          negatywnej.
+
+  - id: kryteria.oczekiwania
+    nazwa: Oczekiwania oceniającego wobec kryteriów
+    opis: Przy każdym kryterium oceniający zapisuje ustalone oczekiwania (rozmowa z § 5 ust. 1).
+    adnotacje:
+      - kategoria: PRZEPIS
+        doc_id: rozp-oceny-okresowe
+        lokalizator: § 5 ust. 1 pkt 3
+        strona: 2
+        cytat_dosłowny: oczekiwania oceniającego co do sposobu spełniania
+
+  - id: termin.odwolanie-7
+    nazwa: Wniesienie odwołania
+    opis: Termin wniesienia sprzeciwu liczy się od zapoznania z oceną.
+    adnotacje:
+      - kategoria: PRZEPIS
+        doc_id: ustawa-sc-wyciag
+        lokalizator: art. 83 ust. 1
+        cytat_dosłowny: w terminie 7 dni od dnia zapoznania się z oceną
+
+  - id: termin.rozpatrzenie-14
+    nazwa: Rozpatrzenie odwołania
+    opis: Termin rozpatrzenia sprzeciwu liczy się od jego wniesienia.
+    adnotacje:
+      - kategoria: PRZEPIS
+        doc_id: ustawa-sc-wyciag
+        lokalizator: art. 83 ust. 3
+        cytat_dosłowny: Sprzeciw rozpatruje się w terminie 14 dni od dnia wniesienia.
+
+  - id: termin.ponowna-ocena
+    nazwa: Ponowna ocena po wyniku negatywnym
+    opis: Ponowna ocena następuje po upływie sześciu miesięcy od zapoznania z negatywną oceną.
+    adnotacje:
+      - kategoria: PRZEPIS
+        doc_id: ustawa-sc-wyciag
+        lokalizator: art. 81 ust. 9
+        cytat_dosłowny: po upływie 6 miesięcy od dnia zapoznania się z oceną
+
+# --- Kryteria i termin ich ustalenia (#12) ----------------------------------------------
+
+kryteria:
+  limit_dodatkowych: 3
+  regula_limitu: kryteria.limit-dodatkowych
+  wykaz:
+    - id: komunikacja
+      nazwa: KOMUNIKACJA
+      adnotacje:
+        - {kategoria: PRZEPIS, doc_id: rozp-oceny-okresowe, lokalizator: "zał. 1 poz. 1", cytat_dosłowny: "1. KOMUNIKACJA −"}
+    - id: kreatywnosc
+      nazwa: KREATYWNOŚĆ
+      adnotacje:
+        - {kategoria: PRZEPIS, doc_id: rozp-oceny-okresowe, lokalizator: "zał. 1 poz. 2", cytat_dosłowny: "2. KREATYWNOŚĆ −"}
+    - id: negocjowanie
+      nazwa: NEGOCJOWANIE
+      adnotacje:
+        - {kategoria: PRZEPIS, doc_id: rozp-oceny-okresowe, lokalizator: "zał. 1 poz. 3", cytat_dosłowny: "3. NEGOCJOWANIE −"}
+    - id: organizacja-pracy
+      nazwa: ORGANIZACJA PRACY I ORIENTACJA NA OSIĄGANIE CELÓW
+      adnotacje:
+        - {kategoria: PRZEPIS, doc_id: rozp-oceny-okresowe, lokalizator: "zał. 1 poz. 4", cytat_dosłowny: "4. ORGANIZACJA PRACY I ORIENTACJA NA OSIĄGANIE CELÓW −"}
+    - id: orientacja-na-klienta
+      nazwa: ORIENTACJA NA KLIENTA/ INTERESANTA
+      adnotacje:
+        - {kategoria: PRZEPIS, doc_id: rozp-oceny-okresowe, lokalizator: "zał. 1 poz. 5", cytat_dosłowny: "5. ORIENTACJA NA KLIENTA/ INTERESANTA −"}
+    - id: podejmowanie-decyzji
+      nazwa: PODEJMOWANIE DECYZJI I ODPOWIEDZIALNOŚĆ
+      adnotacje:
+        - {kategoria: PRZEPIS, doc_id: rozp-oceny-okresowe, lokalizator: "zał. 1 poz. 6", cytat_dosłowny: "6. PODEJMOWANIE DECYZJI I ODPOWIEDZIALNOŚĆ −"}
+    - id: sytuacje-kryzysowe
+      nazwa: RADZENIE SOBIE W SYTUACJACH KRYZYSOWYCH
+      adnotacje:
+        - {kategoria: PRZEPIS, doc_id: rozp-oceny-okresowe, lokalizator: "zał. 1 poz. 7", cytat_dosłowny: "7. RADZENIE SOBIE W SYTUACJACH KRYZYSOWYCH −"}
+    - id: rzetelnosc
+      nazwa: RZETELNOŚĆ
+      adnotacje:
+        - {kategoria: PRZEPIS, doc_id: rozp-oceny-okresowe, lokalizator: "zał. 1 poz. 8", cytat_dosłowny: "8. RZETELNOŚĆ −"}
+    - id: myslenie-analityczne
+      nazwa: MYŚLENIE ANALITYCZNE
+      adnotacje:
+        - {kategoria: PRZEPIS, doc_id: rozp-oceny-okresowe, lokalizator: "zał. 1 poz. 9", cytat_dosłowny: "9. MYŚLENIE ANALITYCZNE −"}
+    - id: wykorzystywanie-wiedzy
+      nazwa: WYKORZYSTYWANIE WIEDZY I DOSKONALENIE ZAWODOWE
+      adnotacje:
+        - {kategoria: PRZEPIS, doc_id: rozp-oceny-okresowe, lokalizator: "zał. 1 poz. 10", cytat_dosłowny: "10. WYKORZYSTYWANIE WIEDZY I DOSKONALENIE ZAWODOWE −"}
+    - id: wspolpraca
+      nazwa: WSPÓŁPRACA
+      adnotacje:
+        - {kategoria: PRZEPIS, doc_id: rozp-oceny-okresowe, lokalizator: "zał. 1 poz. 11", cytat_dosłowny: "11. WSPÓŁPRACA −"}
+    - id: wystapienia-publiczne
+      nazwa: WYSTĄPIENIA PUBLICZNE
+      adnotacje:
+        - {kategoria: PRZEPIS, doc_id: rozp-oceny-okresowe, lokalizator: "zał. 1 poz. 12", cytat_dosłowny: "12. WYSTĄPIENIA PUBLICZNE −"}
+    - id: zarzadzanie-ludzmi
+      nazwa: ZARZĄDZANIE LUDŹMI
+      adnotacje:
+        - {kategoria: PRZEPIS, doc_id: rozp-oceny-okresowe, lokalizator: "zał. 1 poz. 13", cytat_dosłowny: "13. ZARZĄDZANIE LUDŹMI −"}
+    - id: zarzadzanie-strategiczne
+      nazwa: ZARZĄDZANIE STRATEGICZNE
+      adnotacje:
+        - {kategoria: PRZEPIS, doc_id: rozp-oceny-okresowe, lokalizator: "zał. 1 poz. 14", cytat_dosłowny: "14. ZARZĄDZANIE STRATEGICZNE −"}
+  obowiazkowe:
+    A: {regula: kryteria.obowiazkowe-a, kryteria: [zarzadzanie-ludzmi, podejmowanie-decyzji, organizacja-pracy, wspolpraca, komunikacja, zarzadzanie-strategiczne]}
+    B: {regula: kryteria.obowiazkowe-b, kryteria: [zarzadzanie-ludzmi, podejmowanie-decyzji, organizacja-pracy, wspolpraca, komunikacja]}
+    C: {regula: kryteria.obowiazkowe-c, kryteria: [wykorzystywanie-wiedzy, rzetelnosc, organizacja-pracy, wspolpraca, komunikacja]}
+  # Propozycje dodatkowych kryteriów z zadań stanowiska: fragmenty słów (małe litery).
+  regula_propozycji: kryteria.propozycje
+  slowa_kluczowe:
+    komunikacja: [komunikac, informowan, pism, korespondenc]
+    kreatywnosc: [innowac, usprawn, nowych rozwiązań, nowe rozwiązania]
+    negocjowanie: [negocjac, uzgadnian, porozumie]
+    organizacja-pracy: [terminow, rozdział zadań, planowanie]
+    orientacja-na-klienta: [klient, interesant, obsług, obywatel, udostępnian]
+    podejmowanie-decyzji: [decyz, nadzór, kontrol]
+    sytuacje-kryzysowe: [incydent, kryzys, awari, zagroż]
+    rzetelnosc: [procedur, brakowan, weryfikac]
+    myslenie-analityczne: [analiz, opini, walidac, audyt, raport]
+    wykorzystywanie-wiedzy: [przekład, terminolog, norm, przepis]
+    wspolpraca: [współprac, koordynac, partner]
+    wystapienia-publiczne: [szkolen, prezentac, spotkani, wystąpie]
+    zarzadzanie-ludzmi: [kierowan, ocena pracownik, zespoł]
+    zarzadzanie-strategiczne: [strateg, wizj, programow]
+
+terminy:
+  cykl_oceny: {liczba: 24, jednostka: miesiace, regula: termin.cykl-24-miesiace}
+  prog_nieobecnosci: {liczba: 1, jednostka: miesiace, regula: termin.nieobecnosc-81-7}
+  zmiana_prog: {liczba: 6, jednostka: miesiace, regula: termin.wniosek-zmiana-81-8}
+  kryteria_po_zmianie: {liczba: 30, jednostka: dni, regula: termin.ponowne-kryteria-9-1, przesuniecie: termin.dzien-wolny}
+  ocena_przy_zmianie_od: {liczba: -7, jednostka: dni, regula: termin.okno-oceny-9-2}
+  ocena_przy_zmianie_do: {liczba: 30, jednostka: dni, regula: termin.okno-oceny-9-2, przesuniecie: termin.dzien-wolny}
+  kryteria_po_ocenie: {liczba: 30, jednostka: dni, regula: termin.kryteria-30, przesuniecie: termin.dzien-wolny}
+  kryteria_po_negatywnej: {liczba: 7, jednostka: dni, regula: termin.kryteria-7, przesuniecie: termin.dzien-wolny}
+  odwolanie: {liczba: 7, jednostka: dni, regula: termin.odwolanie-7, przesuniecie: termin.dzien-wolny}
+  rozpatrzenie_odwolania: {liczba: 14, jednostka: dni, regula: termin.rozpatrzenie-14, przesuniecie: termin.dzien-wolny}
+  ponowna_ocena: {liczba: 6, jednostka: miesiace, regula: termin.ponowna-ocena}
+  # Święta: do czasu kalendarza świąt (#15) dni wolne to tylko soboty i niedziele.
+  dni_wolne: []
+  dni_robocze: []
+
+# --- Rozbieżności materiałów (panel źródeł) ------------------------------------------------
+
+rozbieznosci:
+  - id: excel.dzielnik-sredniej
+    nazwa: Zautomatyzowany Excel dzieli sumę ocen przez 5, także przy kryteriach dodatkowych
+    opis: >-
+      W „8. Arkusz B-wersja zautomatyzowana.xlsx” średnia to `listy i obliczenia!O13 = O11/O12`,
+      gdzie O11 sumuje oceny obowiązkowe i dodatkowe (O2:O6, O8:O10), a dzielnik
+      `O12 = 5+COUNTIF('Część I'!K19:Q21,"*")`. Kryteria dodatkowe są wpisywane w scalone komórki
+      I19:O21, więc zakres K19:Q21 jest zawsze pusty i dzielnik wynosi 5. Przy 3 kryteriach
+      dodatkowych Excel dzieli sumę 8 ocen przez 5. Aplikacja liczy według § 11.
+    adnotacje:
+      - kategoria: PRZEPIS
+        doc_id: rozp-oceny-okresowe
+        lokalizator: § 11 ust. 1 pkt 2
+        strona: 3
+        cytat_dosłowny: przez wyliczenie średniej arytmetycznej z ocen cząstkowych
+      - kategoria: OBJAŚNIENIE_MATERIAŁU
+        doc_id: arkusz-b-excel
+        lokalizator: Część I!I18
+        cytat_dosłowny: Tutaj możesz wybrać kryteria dodatkowe (maksymalnie 3)
+      - kategoria: FUNKCJA_APLIKACJI
+        uzasadnienie: >-
+          Formuły nie ma w korpusie (ekstrakcja XLSX czyta wartości komórek), więc ich treść i adresy
+          są opisane wyżej; sprawdza to test regresji test_regresja_excel_dzielnik_5.
+        zatwierdził: osoba A (integrator)
+    rozbieżność:
+      opis: Excel liczy średnią z dzielnikiem 5, § 11 – średnią arytmetyczną wszystkich ocen cząstkowych.
+      uzasadnienie: Logika oceny pochodzi z § 11, nie z Excela.
+      zastosowana: 0

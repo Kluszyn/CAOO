@@ -1,0 +1,258 @@
+# Pierwsza ocena w służbie cywilnej (#19, V1-12; spec #2, historyjki 12, 13, 96, 126).
+#
+# Osobny proces z art. 37–38 ustawy. Zasady oceny okresowej (rozporządzenie z 2016 r., arkusze
+# A/B/C, kryteria, skala § 11) NIE są tu kopiowane. Rozporządzenia o pierwszej ocenie
+# (art. 38 ust. 4) ani wzoru jej arkusza nie ma w „materiały”, więc każdy element, który miałby
+# z nich wynikać, ma adnotację BRAK_ŹRÓDŁA z opisem, czego brakuje.
+#
+# Status elementu wylicza aplikacja: BRAK_ŹRÓDŁA, gdy któraś adnotacja ma tę kategorię,
+# w przeciwnym razie ŹRÓDŁO. Cytaty sprawdza `caoo-waliduj` (test w test_pierwsza_ocena.py).
+
+wersja: pierwsza-ocena-v1-1
+
+# Termin z art. 38 ust. 1; długość umowy z art. 35 ust. 3.
+termin:
+  od_nawiazania_miesiecy: 8
+  umowa_miesiecy: 12
+  przed_koncem_umowy_miesiecy: 1
+
+sekcje:
+  - id: podstawa
+    nazwa: Podstawa i odrębność procesu
+    elementy:
+      - id: pierwsza.podstawa
+        nazwa: Kto podlega pierwszej ocenie
+        opis: >-
+          Osoba po raz pierwszy zatrudniona w służbie cywilnej na umowę na czas określony
+          12 miesięcy. Wyboru procesu dokonuje reguła proces.pierwsza (#11).
+        adnotacje:
+          - kategoria: PRZEPIS
+            doc_id: ustawa-sc
+            lokalizator: art. 37 ust. 1
+            strona: 24
+            cytat_dosłowny: >-
+              Osoba zatrudniona na podstawie umowy o pracę, o której mowa w art. 35 ust. 3,
+              podlega pierwszej ocenie w służbie cywilnej.
+      - id: pierwsza.wylaczenie-ksap
+        nazwa: Wyłączenie absolwentów KSAP
+        opis: >-
+          Pierwszej ocenie nie podlega absolwent KSAP, który złożył wniosek o mianowanie.
+          API kadrowe nie podaje tej informacji – oceniający sprawdza ją sam.
+        adnotacje:
+          - kategoria: PRZEPIS
+            doc_id: ustawa-sc
+            lokalizator: art. 37 ust. 3
+            strona: 24
+            cytat_dosłowny: >-
+              Pierwszej ocenie w służbie cywilnej nie podlega absolwent Krajowej Szkoły
+              Administracji Publicznej
+      - id: pierwsza.odrebnosc
+        nazwa: Osobny proces, nie „pierwsza ocena okresowa”
+        opis: >-
+          W pierwszej ocenie, inaczej niż w okresowej, uczestniczy kierujący komórką
+          organizacyjną. Zasady oceny okresowej (arkusze A/B/C, kryteria, skala § 11) nie są
+          stosowane.
+        adnotacje:
+          - kategoria: OBJAŚNIENIE_MATERIAŁU
+            doc_id: poradnik-oceny-okresowe
+            lokalizator: rozdz. 3 Zakres podmiotowy oceny okresowej
+            strona: 7
+            cytat_dosłowny: >-
+              w odróżnieniu od pierwszej oceny w służbie cywilnej nie uczestniczy w niej
+              kierujący komórką organizacyjną
+
+  - id: przebieg
+    nazwa: Termin i oceniający
+    elementy:
+      - id: pierwsza.termin
+        nazwa: Okno terminu pierwszej oceny
+        opis: >-
+          Nie wcześniej niż po 8 miesiącach od nawiązania stosunku pracy i nie później niż
+          miesiąc przed końcem umowy (12 miesięcy).
+        adnotacje:
+          - kategoria: PRZEPIS
+            doc_id: ustawa-sc
+            lokalizator: art. 38 ust. 1
+            strona: 24
+            cytat_dosłowny: >-
+              Pierwsza ocena w służbie cywilnej jest dokonywana niewcześniej niż po upływie
+              8 miesięcy od nawiązania stosunku pracy i niepóźniej niż miesiąc przed upływem
+              okresu, na który została zawarta umowa o pracę ocenianego.
+          - kategoria: PRZEPIS
+            doc_id: ustawa-sc
+            lokalizator: art. 35 ust. 3
+            strona: 23
+            cytat_dosłowny: >-
+              W przypadku osób podejmujących po raz pierwszy pracę w służbie cywilnej umowę
+              o pracę zawiera się na czas określony wynoszący 12 miesięcy.
+      - id: pierwsza.oceniajacy
+        nazwa: Oceniający
+        opis: >-
+          Bezpośredni przełożony w porozumieniu z kierującym komórką organizacyjną, w której
+          pracownik jest zatrudniony.
+        adnotacje:
+          - kategoria: PRZEPIS
+            doc_id: ustawa-sc
+            lokalizator: art. 38 ust. 2
+            strona: 24
+            cytat_dosłowny: >-
+              Bezpośredni przełożony ocenianego w porozumieniu z kierującym komórką
+              organizacyjną, w której pracownik jest zatrudniony, dokonuje pierwszej oceny
+              w służbie cywilnej
+
+  - id: zakres
+    nazwa: Co bierze się pod uwagę
+    elementy:
+      - id: pierwsza.postawa
+        nazwa: Postawa, zaangażowanie, postępy, relacje i terminowość
+        opis: Opis oceniającego – ustawa nie określa skali ani punktacji.
+        adnotacje:
+          - kategoria: PRZEPIS
+            doc_id: ustawa-sc
+            lokalizator: art. 38 ust. 2 pkt 1
+            strona: 25
+            cytat_dosłowny: >-
+              postawę pracownika, jego zaangażowanie i postępy w pracy, relacje ze
+              współpracownikami oraz terminowość wykonywania zadań
+      - id: pierwsza.egzamin
+        nazwa: Wynik egzaminu ze służby przygotowawczej
+        opis: Wynik wpisuje oceniający; API kadrowe go nie podaje.
+        adnotacje:
+          - kategoria: PRZEPIS
+            doc_id: ustawa-sc
+            lokalizator: art. 38 ust. 2 pkt 2
+            strona: 25
+            cytat_dosłowny: wynik egzaminu ze służby przygotowawczej
+      - id: pierwsza.sprawozdanie
+        nazwa: Sprawozdanie ocenianego z realizowanych zadań
+        opis: Sprawozdanie sporządza oceniany; jego zakres i wzór – zob. element bez źródła niżej.
+        adnotacje:
+          - kategoria: PRZEPIS
+            doc_id: ustawa-sc
+            lokalizator: art. 38 ust. 2 pkt 3
+            strona: 25
+            cytat_dosłowny: >-
+              sporządzone przez ocenianego pracownika sprawozdanie dotyczące zadań
+              realizowanych przez niego w trakcie przepracowanego okresu
+
+  - id: skutki
+    nazwa: Wynik i jego skutek
+    elementy:
+      - id: pierwsza.skutek
+        nazwa: Wniosek kierującego komórką do dyrektora generalnego
+        opis: >-
+          Ocena pozytywna – wniosek o umowę na czas nieokreślony; ocena negatywna – wniosek
+          o niezawieranie takiej umowy albo o rozwiązanie umowy na czas określony.
+        adnotacje:
+          - kategoria: PRZEPIS
+            doc_id: ustawa-sc
+            lokalizator: art. 38 ust. 3
+            strona: 25
+            cytat_dosłowny: >-
+              Po dokonaniu oceny kierujący komórką organizacyjną wnioskuje do dyrektora
+              generalnego urzędu w przypadku:
+      - id: pierwsza.warunki-wyniku
+        nazwa: Warunki oceny pozytywnej i negatywnej
+        opis: >-
+          Ustawa odsyła do rozporządzenia. Skala i progi § 11 dotyczą oceny okresowej
+          i nie są tu stosowane.
+        adnotacje:
+          - kategoria: BRAK_ŹRÓDŁA
+            uzasadnienie: >-
+              Warunki przyznania oceny pozytywnej lub negatywnej określa rozporządzenie
+              z art. 38 ust. 4 pkt 4, którego nie ma w „materiały”.
+          - kategoria: PRZEPIS
+            doc_id: ustawa-sc
+            lokalizator: art. 38 ust. 4 pkt 4
+            strona: 25
+            cytat_dosłowny: warunki przyznawania oceny pozytywnej lub negatywnej
+      - id: pierwsza.skala
+        nazwa: Skala ocen i sposób liczenia wyniku
+        opis: >-
+          Aplikacja nie liczy wyniku pierwszej oceny: skala 1–9 i średnia z § 11 rozporządzenia
+          z 2016 r. dotyczą tylko oceny okresowej.
+        adnotacje:
+          - kategoria: BRAK_ŹRÓDŁA
+            uzasadnienie: >-
+              Materiały nie określają skali pierwszej oceny. Przeniesienie skali z oceny
+              okresowej byłoby kopiowaniem zasad innego procesu.
+
+  - id: formularz
+    nazwa: Formularz (szkielet)
+    elementy:
+      - id: pierwsza.tryb
+        nazwa: Sposób i tryb dokonywania pierwszej oceny
+        opis: Kolejne kroki procesu (kto, kiedy, w jakiej formie) nie są opisane w materiałach.
+        adnotacje:
+          - kategoria: BRAK_ŹRÓDŁA
+            uzasadnienie: >-
+              Sposób i tryb określa rozporządzenie z art. 38 ust. 4 pkt 1, którego nie ma
+              w „materiały”.
+          - kategoria: PRZEPIS
+            doc_id: ustawa-sc
+            lokalizator: art. 38 ust. 4 pkt 1
+            strona: 25
+            cytat_dosłowny: sposób i tryb dokonywania pierwszej oceny w służbie cywilnej
+      - id: pierwsza.wzor-arkusza
+        nazwa: Wzór arkusza pierwszej oceny
+        opis: Formularz w aplikacji to szkielet z sekcjami z art. 38 ust. 2, nie urzędowy wzór.
+        adnotacje:
+          - kategoria: BRAK_ŹRÓDŁA
+            uzasadnienie: >-
+              Wzór arkusza określa rozporządzenie z art. 38 ust. 4 pkt 2. W „materiały/4.
+              Formularze ocen” są tylko wzory arkuszy A, B i C oceny okresowej.
+          - kategoria: PRZEPIS
+            doc_id: ustawa-sc
+            lokalizator: art. 38 ust. 4 pkt 2
+            strona: 25
+            cytat_dosłowny: wzór arkusza pierwszej oceny w służbie cywilnej
+      - id: pierwsza.schemat-pol
+        nazwa: Schemat pól formularza pierwszej oceny
+        opis: Bez schematu pól aplikacja nie odwzorowuje układu formularza.
+        adnotacje:
+          - kategoria: BRAK_ŹRÓDŁA
+            uzasadnienie: >-
+              W „materiały/4. Formularze ocen” są tylko pliki blokady Worda
+              „~$rmularz pierwszej oceny - schmat pól formularza.docx” (bez treści).
+              Właściwego pliku ze schematem pól nie dostarczono.
+      - id: pierwsza.formularz-sprawozdania
+        nazwa: Zakres i wzór formularza sprawozdania ocenianego
+        opis: Sprawozdanie jest elementem oceny (art. 38 ust. 2 pkt 3), ale bez narzuconego zakresu i wzoru.
+        adnotacje:
+          - kategoria: BRAK_ŹRÓDŁA
+            uzasadnienie: >-
+              Zakres i wzór formularza sprawozdania określa rozporządzenie z art. 38 ust. 4
+              pkt 3, którego nie ma w „materiały”.
+          - kategoria: PRZEPIS
+            doc_id: ustawa-sc
+            lokalizator: art. 38 ust. 4 pkt 3
+            strona: 25
+            cytat_dosłowny: >-
+              zakres i wzór formularza sprawozdania dotyczącego zadań realizowanych przez
+              ocenianego pracownika w trakcie przepracowanego okresu
+
+# Pytania do organizatorów – widoczne w panelu braków (GET /api/braki).
+pytania_do_organizatorow:
+  - id: pytanie.schemat-pol-pierwszej-oceny
+    tresc: >-
+      Czy możecie dostarczyć „formularz pierwszej oceny - schemat pól formularza.docx”?
+      W materiałach są tylko pliki blokady Worda (~$rmularz pierwszej oceny - schmat pól
+      formularza.docx) w folderach schematów A, B i C, bez treści.
+    dotyczy: [pierwsza.schemat-pol]
+    adnotacje:
+      - kategoria: BRAK_ŹRÓDŁA
+        uzasadnienie: Plik ze schematem pól pierwszej oceny nie został dostarczony.
+  - id: pytanie.rozporzadzenie-pierwszej-oceny
+    tresc: >-
+      Czy w prototypie mamy uwzględnić rozporządzenie w sprawie pierwszej oceny (art. 38
+      ust. 4: tryb, wzór arkusza, formularz sprawozdania, warunki wyniku)? Nie ma go
+      w materiałach, więc te elementy są oznaczone BRAK_ŹRÓDŁA.
+    dotyczy: [pierwsza.tryb, pierwsza.wzor-arkusza, pierwsza.formularz-sprawozdania, pierwsza.warunki-wyniku]
+    adnotacje:
+      - kategoria: PRZEPIS
+        doc_id: ustawa-sc
+        lokalizator: art. 38 ust. 4
+        strona: 25
+        cytat_dosłowny: >-
+          Prezes Rady Ministrów określi, w drodze rozporządzenia, szczegółowe warunki
+          i sposób dokonywania pierwszej oceny w służbie cywilnej

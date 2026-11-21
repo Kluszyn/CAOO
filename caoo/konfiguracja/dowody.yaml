@@ -1,0 +1,31 @@
+# Cytaty-dowody dla kryterium przez LLM – wersja 1 (#22, V1-15; spec #2).
+# Źródła: notatki z rozmowy (#24) i przykłady z odpowiedzi na pytania pomocnicze (#14).
+# LLM zwraca wyłącznie cytaty; caoo_core.llm odrzuca cytat bez dosłownego pokrycia w źródłach.
+# Wskazane dowody nie zmieniają punktacji.
+
+wersja_promptu: "cytaty-dowody-v1"
+
+llm:
+  dostawcy:
+    # Na żywo tylko z ANTHROPIC_API_KEY; bez klucza – wszystkie źródła kryterium jako cytaty (bez modelu).
+    - {typ: anthropic, model: claude-sonnet-5-5}
+    - {typ: wszystkie_fragmenty}
+
+etykiety:
+  propozycja: propozycja — wymaga zatwierdzenia
+  odrzucona: propozycja odrzucona — brak pokrycia w źródłach
+  brak_zrodel: Brak notatek i przykładów w tym cyklu – nie ma z czego cytować.
+  tryby:
+    NA_ŻYWO: na żywo
+    ZAPISANE: zapisane
+    EKSTRAKCYJNE: ekstrakcyjny (bez modelu)
+
+regula:
+  id: dowody.cytaty-dla-kryterium
+  adnotacje:
+    - kategoria: FUNKCJA_APLIKACJI
+      uzasadnienie: >-
+        Spec #2 (historyjki 59, 66, 122): LLM wskazuje cytaty-dowody z notatek i przykładów dla
+        kryterium; odpowiedź z cytatem bez pokrycia jest odrzucana i pokazywana jako „propozycja
+        odrzucona – brak pokrycia w źródłach”; dowody nie zmieniają punktacji.
+      zatwierdził: osoba D (#22) – do zatwierdzenia przez właściciela modelu

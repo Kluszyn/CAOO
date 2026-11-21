@@ -1,0 +1,47 @@
+schemat:
+  wersja: graf-v1
+  obowiazuje_od: 2026-11-21
+  typy_wezlow: [stanowisko, wymaganie, zadanie, kompetencja, kryterium, poziom, dowod, wynik, luka, dzialanie, rezultat]
+  relacje:
+    zawiera: [[stanowisko, wymaganie], [stanowisko, zadanie]]
+    wspiera: [[wymaganie, zadanie]]
+    odpowiada: [[zadanie, kompetencja]]
+    ma_poziom_wymagany: [[kompetencja, poziom]]
+    zestawiono_z: [[poziom, dowod], [poziom, wynik]]
+    wskazuje_poziom: [[dowod, poziom], [wynik, poziom]]
+    porownano_z_celem: [[poziom, luka]]
+    proponuje_dzialanie: [[luka, dzialanie]]
+    ma_rezultat: [[dzialanie, rezultat]]
+    ma_dowod_poprawy: [[rezultat, dowod]]
+
+wersja_katalogu: kompetencje-v1
+# Wartość pomocnicza stosowana wyłącznie jako propozycja w grafie.
+poziom_roboczy: 5
+slowa_uzupelniajace:
+  wykorzystywanie-wiedzy: [znajomość, certyfikat, opini, prawn, język, literatur, samokształc]
+  zarzadzanie-ludzmi: [zarządzaniu, delegowan]
+  organizacja-pracy: [organizacja pracy, priorytet]
+# Samo uczestnictwo w szkoleniu lub spotkaniu z dawnego zalecenia nie świadczy o wystąpieniu.
+slowa_pomijane_w_zaleceniach: [szkolen, spotkani]
+
+dzialania:
+  - id: szkolenie
+    nazwa: Szkolenie
+    adnotacje:
+      - {kategoria: OBJAŚNIENIE_MATERIAŁU, doc_id: poradnik-oceny-okresowe, strona: 34, lokalizator: "Wykorzystanie wyników oceny", cytat_dosłowny: "informacje zawarte w ocenach cząstkowych mogą posłużyć do określenia luk kompetencyjnych"}
+  - id: warsztaty
+    nazwa: Warsztaty
+    adnotacje:
+      - {kategoria: OBJAŚNIENIE_MATERIAŁU, doc_id: poradnik-oceny-okresowe, strona: 41, lokalizator: "Przykład wniosków rozwojowych", cytat_dosłowny: "szkolenia, warsztaty, coaching z bezpośrednim przełożonym"}
+  - id: coaching
+    nazwa: Coaching z przełożonym
+    adnotacje:
+      - {kategoria: OBJAŚNIENIE_MATERIAŁU, doc_id: poradnik-oceny-okresowe, strona: 41, lokalizator: "Przykład wniosków rozwojowych", cytat_dosłowny: "coaching z bezpośrednim przełożonym"}
+  - id: samoksztalcenie
+    nazwa: Samokształcenie
+    adnotacje:
+      - {kategoria: OBJAŚNIENIE_MATERIAŁU, doc_id: poradnik-oceny-okresowe, strona: 44, lokalizator: "Przykład wniosków rozwojowych", cytat_dosłowny: "szkolenia i samokształcenie"}
+  - id: literatura-branzowa
+    nazwa: Czytanie literatury branżowej
+    adnotacje:
+      - {kategoria: OBJAŚNIENIE_MATERIAŁU, doc_id: poradnik-oceny-okresowe, strona: 44, lokalizator: "Przykład wniosków rozwojowych", cytat_dosłowny: "czytanie literatury branżowej"}

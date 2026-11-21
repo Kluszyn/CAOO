@@ -1,0 +1,79 @@
+# Pytania do rozmowy oceniającej (#24, V1-17; spec #2, historyjki 62–68).
+#
+# Szablony uruchamiane regułami na danych cyklu i profilu kadrowego. Każde pytanie ma
+# uzasadnienie i powiązanie (zadanie, wymaganie, kryterium, poprzednia ocena, przepis).
+# Bez LLM. Pytania do rozmowy są oddzielone od pytań pomocniczych do oceny kryteriów (#14).
+# Notatki z rozmowy są dowodami i nie zmieniają punktacji.
+
+wersja: "rozmowa-v1-1"
+
+etykieta_funkcji: funkcja aplikacji — nie wymóg rozporządzenia
+
+limity:
+  zadania: 3          # pytań o zadania z opisu stanowiska
+  wymagania: 2        # pytań o wymagania stanowiska
+  niska_ocena_do: 3   # kryterium z punktami ≤ 3 uruchamia pytania o trudności i wsparcie
+  wysoka_ocena_od: 7  # kryterium z punktami ≥ 7 uruchamia pytanie o dobre praktyki
+
+# Zakres rozmowy z przepisu – zawsze w planie (to nie funkcja aplikacji, tylko wymóg).
+zakres_par_10:
+  - id: zakres.obowiazki
+    tresc: Jakie główne obowiązki wykonywał(a) Pan/Pani w okresie oceny i jak je Pan/Pani realizował(a)?
+    uzasadnienie: Rozmowa oceniająca obejmuje główne obowiązki i sposób ich realizacji wobec kryteriów.
+    adnotacje:
+      - {kategoria: PRZEPIS, doc_id: rozp-oceny-okresowe, lokalizator: "§ 10 pkt 1",
+         cytat_dosłowny: "główne obowiązki wykonywane przez ocenianego w okresie, w którym podlegał ocenie, oraz sposób ich realizacji"}
+  - id: zakres.cele
+    tresc: W jakim stopniu udało się zrealizować cele wyznaczone na okres oceny?
+    uzasadnienie: Jeśli wyznaczono cele, rozmowa obejmuje sposób ich realizowania.
+    adnotacje:
+      - {kategoria: PRZEPIS, doc_id: rozp-oceny-okresowe, lokalizator: "§ 10 pkt 2",
+         cytat_dosłowny: "sposób realizowania przez ocenianego celów do osiągnięcia w okresie"}
+  - id: zakres.rozwoj
+    tresc: W jakim kierunku chce Pan/Pani rozwijać się zawodowo i jakich szkoleń lub wsparcia potrzebuje?
+    uzasadnienie: Rozmowa oceniająca obejmuje kierunki rozwoju i potrzeby w zakresie kwalifikacji.
+    adnotacje:
+      - {kategoria: PRZEPIS, doc_id: rozp-oceny-okresowe, lokalizator: "§ 10 pkt 3",
+         cytat_dosłowny: "kierunki dalszego rozwoju zawodowego i potrzeby ocenianego"}
+
+# Szablony uruchamiane regułami – funkcja aplikacji (etykieta jak wyżej).
+szablony:
+  - id: pyt.zadanie
+    regula: zadanie_stanowiska
+    tresc: "Zadanie z opisu stanowiska: „{zadanie}”. Proszę opowiedzieć o konkretnej sytuacji z okresu oceny – co Pan/Pani zrobił(a) i z jakim skutkiem?"
+    uzasadnienie: Zadanie kluczowe dla stanowiska – przykład z okresu oceny jest dowodem do oceny kryteriów.
+
+  - id: pyt.wymaganie
+    regula: wymaganie_stanowiska
+    tresc: "Wymaganie stanowiska: „{wymaganie}”. W jakich sytuacjach było ono najważniejsze w Pana/Pani pracy?"
+    uzasadnienie: Wymaganie z opisu stanowiska pozwala odnieść rozmowę do oczekiwań wobec stanowiska.
+
+  - id: pyt.zalecenie
+    regula: poprzednie_zalecenie
+    tresc: "Poprzednia ocena ({data}) zawierała zalecenie: „{zalecenie}”. Co udało się z tego zrealizować i co przeszkodziło?"
+    uzasadnienie: Rozmowa nawiązuje do zaleceń z poprzedniej oceny, żeby sprawdzić ich realizację.
+
+  - id: pyt.niska.trudnosci
+    regula: niska_ocena
+    tresc: "Przy kryterium „{kryterium}” – jakie trudności napotkał(a) Pan/Pani w okresie oceny?"
+    uzasadnienie: Niska ocena kryterium – pytanie o przyczyny zamiast założenia, skąd wynika wynik.
+
+  - id: pyt.niska.wsparcie
+    regula: niska_ocena
+    tresc: "Czy obciążenie zadaniami lub brak wsparcia wpływały na „{kryterium}”? Jakiego wsparcia potrzebuje Pan/Pani?"
+    uzasadnienie: Historyjka 68 spec #2 – obciążenie i wsparcie jako pytanie, nie wniosek; niski wynik nie jest automatycznie przypisywany przeciążeniu.
+
+  - id: pyt.wysoka
+    regula: wysoka_ocena
+    tresc: "Przy kryterium „{kryterium}” ocena jest wysoka. Co sprawdziło się najlepiej i czym mógłby Pan/Pani podzielić się z zespołem?"
+    uzasadnienie: Wysoka ocena kryterium – utrwalenie mocnej strony i dobrych praktyk.
+
+funkcja:
+  id: rozmowa.szablony-pytan
+  adnotacje:
+    - kategoria: FUNKCJA_APLIKACJI
+      uzasadnienie: >-
+        Spec #2 (historyjki 62–68): pytania z szablonów uruchamianych regułami – zadanie kluczowe,
+        wymaganie, poprzednie zalecenie, niska i wysoka ocena kryterium. Rozporządzenie wymaga
+        tylko zakresu rozmowy z § 10; treść pytań jest pomocą aplikacji.
+      zatwierdził: osoba D (#24) – do zatwierdzenia przez właściciela metodyki

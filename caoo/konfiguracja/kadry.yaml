@@ -1,0 +1,175 @@
+# Mock API kadrowego (#9). DANE FIKCYJNE – wyłącznie do demonstracji.
+# Stanowiska i komórki wyprowadzono z przykładowych arkuszy w
+# „materiały/5. Przykładowe wypełnione formularze oceny” (pole `zrodlo_przykladu`).
+# Imiona, nazwiska, daty i zdarzenia są zmyślone.
+
+demo: true
+jednostka: Urząd Testowy (fikcyjny)
+
+pracownicy:
+  - id: K-001
+    imie: Marek
+    nazwisko: Graniczny
+    stanowisko: Graniczny Lekarz Weterynarii w Testowie
+    komorka: Kierownictwo urzędu
+    kierownik_urzedu: true
+    liczba_podleglych: 12
+    korpus: urzednik
+    zatrudnienie: {rodzaj: mianowanie, data_nawiazania: 2009-03-01, data_na_stanowisku: 2018-05-01}
+    mianowanie: {data: 2012-09-01, stopien: radca generalny}
+    przelozony_id: null
+    zastepstwa: []
+    opis_stanowiska:
+      cel: Kierowanie urzędem i nadzór nad granicznym punktem kontroli weterynaryjnej.
+      zadania: [Kierowanie pracą urzędu, Nadzór nad kontrolą weterynaryjną na granicy, Współpraca z inspekcją wojewódzką]
+      wymagania: [Prawo wykonywania zawodu lekarza weterynarii, 5 lat doświadczenia kierowniczego]
+    poprzednie_oceny:
+      - {data_sporzadzenia: 2024-11-04, data_zapoznania: 2024-11-06, wynik: pozytywna, poziom: powyżej oczekiwań, srednia: 7.0,
+         zalecenia: [Szkolenie z zarządzania zmianą]}
+    nieobecnosci: []
+    uwagi: []
+    zrodlo_przykladu: 1) Arkusz oceny A - GLW.docx
+
+  - id: K-002
+    imie: Ewa
+    nazwisko: Rozwojowa
+    stanowisko: Naczelnik Wydziału
+    komorka: Wydział Rozwoju
+    kierownik_urzedu: false
+    liczba_podleglych: 6
+    korpus: urzednik
+    zatrudnienie: {rodzaj: mianowanie, data_nawiazania: 2014-02-01, data_na_stanowisku: 2021-01-01}
+    mianowanie: {data: 2017-06-01, stopien: radca}
+    przelozony_id: K-001
+    zastepstwa:
+      - {zastepca_id: K-003, od: 2026-07-01, do: 2026-07-21, powod: urlop wypoczynkowy}
+    opis_stanowiska:
+      cel: Kierowanie wydziałem odpowiedzialnym za projekty rozwojowe urzędu.
+      zadania: [Planowanie i rozdział zadań w wydziale, Koordynacja projektów rozwojowych, Ocena pracowników wydziału]
+      wymagania: [Wykształcenie wyższe, 3 lata doświadczenia w zarządzaniu zespołem]
+    poprzednie_oceny:
+      - {data_sporzadzenia: 2024-12-10, data_zapoznania: 2024-12-12, wynik: pozytywna, poziom: na poziomie oczekiwań, srednia: 5.4,
+         zalecenia: [Warsztaty z delegowania zadań, Coaching z bezpośrednim przełożonym]}
+    nieobecnosci:
+      - {od: 2026-07-01, do: 2026-07-21, rodzaj: urlop wypoczynkowy, usprawiedliwiona: true}
+    uwagi: []
+    zrodlo_przykladu: 2) Arkusz oceny B - naczelnik.docx
+
+  - id: K-003
+    imie: Tomasz
+    nazwisko: Radczyk
+    stanowisko: radca
+    komorka: Wydział Rozwoju
+    kierownik_urzedu: false
+    liczba_podleglych: 0
+    korpus: pracownik
+    zatrudnienie: {rodzaj: umowa_nieokreslony, data_nawiazania: 2019-04-01, data_na_stanowisku: 2022-04-01}
+    mianowanie: null
+    przelozony_id: K-002
+    zastepstwa: []
+    opis_stanowiska:
+      cel: Przygotowywanie analiz i opinii w sprawach współpracy gospodarczej.
+      zadania: [Opracowywanie analiz i opinii, Przygotowywanie projektów pism, Udział w spotkaniach z partnerami]
+      wymagania: [Wykształcenie wyższe ekonomiczne lub prawnicze, Znajomość języka angielskiego]
+    poprzednie_oceny:
+      - {data_sporzadzenia: 2024-10-15, data_zapoznania: 2024-10-17, wynik: pozytywna, poziom: powyżej oczekiwań, srednia: 6.6,
+         zalecenia: [Szkolenie językowe, Czytanie literatury branżowej]}
+    nieobecnosci: []
+    uwagi: []
+    zrodlo_przykladu: 5) Arkusz oceny C - radca.docx
+
+  - id: K-004
+    imie: Paweł
+    nazwisko: Cyberski
+    stanowisko: Główny specjalista ds. cyberbezpieczeństwa
+    komorka: Wydział Rozwoju
+    kierownik_urzedu: false
+    liczba_podleglych: 0
+    korpus: pracownik
+    zatrudnienie: {rodzaj: umowa_nieokreslony, data_nawiazania: 2020-09-01, data_na_stanowisku: 2020-09-01}
+    mianowanie: null
+    przelozony_id: K-002
+    zastepstwa: []
+    opis_stanowiska:
+      cel: Zapewnienie bezpieczeństwa systemów teleinformatycznych urzędu.
+      zadania: [Monitorowanie incydentów bezpieczeństwa, Przygotowywanie procedur bezpieczeństwa, Szkolenie pracowników]
+      wymagania: [Wykształcenie wyższe techniczne, Certyfikat z bezpieczeństwa IT]
+    poprzednie_oceny:
+      - {data_sporzadzenia: 2026-06-02, data_zapoznania: 2026-06-05, wynik: negatywna, poziom: poniżej oczekiwań, srednia: 3.8,
+         zalecenia: [Terminowe raportowanie incydentów, Szkolenie z zarządzania incydentami]}
+    nieobecnosci: []
+    uwagi:
+      - {data: 2026-03-10, rodzaj: nagana, tresc: Nagana za nieprzekazanie raportu o incydencie w terminie (fikcyjna).}
+    zrodlo_przykladu: 09) Arkusz oceny C - gł specjalista (neg.).docx
+
+  - id: K-005
+    imie: Anna
+    nazwisko: Archiwalna
+    stanowisko: archiwista
+    komorka: Wydział Rozwoju
+    kierownik_urzedu: false
+    liczba_podleglych: 0
+    korpus: pracownik
+    zatrudnienie: {rodzaj: umowa_okreslony, data_nawiazania: 2026-06-01, data_na_stanowisku: 2026-06-01}
+    mianowanie: null
+    przelozony_id: K-002
+    zastepstwa: []
+    pierwsza_praca_w_sluzbie_cywilnej: true
+    opis_stanowiska:
+      cel: Prowadzenie archiwum zakładowego urzędu.
+      zadania: [Przyjmowanie dokumentacji do archiwum, Udostępnianie akt, Brakowanie dokumentacji]
+      wymagania: [Wykształcenie średnie, Kurs archiwalny]
+    poprzednie_oceny: []
+    nieobecnosci: []
+    uwagi: []
+    zrodlo_przykladu: 10) Arkusz oceny C - archiwista.docx
+
+  - id: K-006
+    imie: Jolanta
+    nazwisko: Jakościowa
+    stanowisko: Główny analityk ds. jakości
+    komorka: Wydział Rozwoju
+    kierownik_urzedu: false
+    liczba_podleglych: 0
+    korpus: urzednik
+    zatrudnienie: {rodzaj: mianowanie, data_nawiazania: 2016-01-04, data_na_stanowisku: 2019-03-01}
+    mianowanie: {data: 2019-03-01, stopien: specjalista}
+    przelozony_id: K-002
+    zastepstwa: []
+    opis_stanowiska:
+      cel: Nadzór nad jakością badań laboratoryjnych.
+      zadania: [Walidacja metod badawczych, Audyty wewnętrzne, Raportowanie wyników jakości]
+      wymagania: [Wykształcenie wyższe chemiczne, Znajomość normy ISO 17025]
+    poprzednie_oceny:
+      - {data_sporzadzenia: 2024-09-20, data_zapoznania: 2024-09-23, wynik: pozytywna, poziom: znacznie powyżej oczekiwań, srednia: 8.2,
+         zalecenia: []}
+    # Ciągła nieobecność ponad miesiąc (dwa zwolnienia połączone przez weekend) – przedłuża termin oceny.
+    nieobecnosci:
+      - {od: 2026-02-02, do: 2026-02-27, rodzaj: zwolnienie lekarskie, usprawiedliwiona: true}
+      - {od: 2026-03-02, do: 2026-04-10, rodzaj: zwolnienie lekarskie, usprawiedliwiona: true}
+    uwagi:
+      - {data: 2025-11-14, rodzaj: uwaga, tresc: Wyróżnienie za wdrożenie nowej procedury audytu (fikcyjne).}
+    zrodlo_przykladu: 11) Arkusz oceny C - główny analityk.docx
+
+  # Niepełne dane kadrowe: brak podstawy zatrudnienia ⇒ „nie można ustalić” rodzaju oceny (#11).
+  - id: K-007
+    imie: Michał
+    nazwisko: Nowoprzyjęty
+    stanowisko: specjalista ds. przekładów
+    komorka: Wydział Rozwoju
+    kierownik_urzedu: false
+    liczba_podleglych: 0
+    korpus: null
+    zatrudnienie: null
+    mianowanie: null
+    pierwsza_praca_w_sluzbie_cywilnej: null
+    przelozony_id: K-002
+    zastepstwa: []
+    opis_stanowiska:
+      cel: Tłumaczenie dokumentów urzędowych.
+      zadania: [Przekłady pisemne, Weryfikacja terminologii]
+      wymagania: [Wykształcenie wyższe filologiczne]
+    poprzednie_oceny: []
+    nieobecnosci: []
+    uwagi: []
+    zrodlo_przykladu: 12) Arkusz oceny C - specjalista (negatywna).docx

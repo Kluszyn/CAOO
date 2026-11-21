@@ -1,0 +1,38 @@
+{
+  "63a3d01ad1dc75aacef9c890ae7e7b49e7474f2f7fd03aaaacc66b51c1ba0047": {
+    "cytaty": [
+      {
+        "fragment_id": "akt-b561b8af05#6",
+        "cytat": "a) lit. b otrzymuje brzmienie: „b) poniżej oczekiwań – powyżej 2 punktów do 4,5 punktu,”,"
+      },
+      {
+        "fragment_id": "akt-b561b8af05#7",
+        "cytat": "b) lit. c otrzymuje brzmienie: „c) na poziomie oczekiwań – powyżej 4,5 punktu do 6 punktów,”;"
+      },
+      {
+        "fragment_id": "rozp-oceny-okresowe@2016#27",
+        "cytat": "c) na poziomie oczekiwań – powyżej 4 punktów do 6 punktów"
+      }
+    ],
+    "wybor": [
+      "granica-pozytywnej"
+    ],
+    "tresc": null
+  },
+  "e0d5b54f90e0d45cddee52c5153d08997761d5d0ba7035fa9a73c07336df2034": {
+    "cytaty": [
+      {
+        "fragment_id": "akt-b561b8af05#4",
+        "cytat": "w § 5 ust. 2 wyrazy „nie więcej niż 3 kryteria dodatkowe” zastępuje się wyrazami „nie więcej niż 2 kryteria dodatkowe”"
+      },
+      {
+        "fragment_id": "rozp-oceny-okresowe@2016#15",
+        "cytat": "Oceniający może wybrać z wykazu kryteriów oceny nie więcej niż 3 kryteria dodatkowe"
+      }
+    ],
+    "wybor": [
+      "limit-dodatkowych"
+    ],
+    "tresc": null
+  }
+}

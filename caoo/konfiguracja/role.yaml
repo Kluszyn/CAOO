@@ -1,0 +1,31 @@
+# Role i uprawnienia (#10, V1-3), format KonfiguracjaRol z caoo_core.auth.
+# Spec #2: przełącznik roli w nagłówku, bez uwierzytelniania – każda rola ma konto demo
+# (hasło „demo”), a uprawnienia egzekwuje API. Osoby (osoba_id) pochodzą z kadry.yaml.
+
+konta:
+  - {login: oceniany, hasło: demo, rola: oceniany, osoba_id: K-004}        # główny specjalista (arkusz C)
+  - {login: oceniajacy, hasło: demo, rola: oceniajacy, osoba_id: K-002}    # naczelnik wydziału
+  - {login: zastepca, hasło: demo, rola: oceniajacy, osoba_id: K-003}      # radca, zastępuje K-002 1–21.07.2026
+  - {login: kierownik, hasło: demo, rola: oceniajacy, osoba_id: K-001}     # ocenia naczelnika
+  - {login: kadry, hasło: demo, rola: kadry}
+  - {login: admin, hasło: demo, rola: administrator}
+
+# Akcje ról:
+#   pracownicy.czytaj – profil i wybór procesu; ocena.czytaj – cykle, ocena, historia;
+#   cykl.prowadz – rozpoczęcie cyklu i zapis oceny; cykl.potwierdz – potwierdzenie § 6 ust. 2;
+#   rozmowa.prowadz – pytania do rozmowy i notatki (#24);
+#   cykl.wniosek – wniosek ocenianego o zmianę terminu (#16); import.arkusze – import przykładów (#18, administrator);
+#   ocena.obieg – rejestracja doręczenia, wniesienia i rozpatrzenia odwołania (#17; oceniający albo kadry);
+#   przepisy.zarzadzaj – wgranie aktu zmieniającego, analiza, publikacja wersji reguł i zadania decyzyjne (#25, administrator).
+uprawnienia:
+  oceniany: [pracownicy.czytaj, ocena.czytaj, cykl.potwierdz, cykl.wniosek]
+  oceniajacy: [pracownicy.czytaj, ocena.czytaj, cykl.prowadz, rozmowa.prowadz, ocena.obieg]
+  kadry: [pracownicy.czytaj, ocena.czytaj, ocena.obieg]
+  administrator: ["*"]
+
+# Oceniany widzi tylko siebie. Oceniający widzi osoby, które ocenia: bezpośrednich podwładnych
+# oraz – w okresie zastępstwa – podwładnych zastępowanego (pole „oceniajacy” liczy API na dany dzień).
+# Kadry i administrator nie mają reguły, więc widzą wszystkich.
+reguły_dostępu:
+  - {zasób: pracownik, rola: oceniany, pole: id}
+  - {zasób: pracownik, rola: oceniajacy, pole: oceniajacy}

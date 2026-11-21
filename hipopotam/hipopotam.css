@@ -1,0 +1,146 @@
+/* Hipopotam: trzy klatki (stoi, skok, zaprasza) + ruch na transformie.
+   Klatki mają wspólne płótno 548 × 676; stopy klatek „stoi” i „zaprasza” są na 91,6% wysokości.
+   Ruch: data-ruch="podskok" albo data-ruch="zaprasza" na .hipopotam. */
+:root {
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  /* lot po paraboli: easeOutQuad w górę, easeInQuad w dół (easings.net) */
+  --ease-wznos: cubic-bezier(0.5, 1, 0.89, 1);
+  --ease-opad: cubic-bezier(0.11, 0, 0.5, 0);
+  --hipopotam-podskok: 720ms;
+  --hipopotam-zaprasza: 1600ms;
+}
+
+.hipopotam {
+  position: relative;
+  display: inline-grid;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.hipopotam__cialo {
+  display: grid;
+  transform-origin: 53% 91.6%; /* ruch liczony od stóp */
+}
+
+.hipopotam__klatka {
+  grid-area: 1 / 1;
+  width: 100%;
+  height: auto;
+  user-select: none;
+  pointer-events: none;
+}
+
+/* W spoczynku widać tylko klatkę „stoi”. */
+.hipopotam__klatka--skok,
+.hipopotam__klatka--zaprasza { opacity: 0; }
+
+.hipopotam__cien {
+  position: absolute;
+  left: 28%;
+  right: 22%;
+  top: 88.6%;
+  height: 6%;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgb(0 0 0 / 0.22), transparent);
+  z-index: -1;
+}
+
+.hipopotam:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; border-radius: 12px; }
+
+/* ---------- podskok ----------
+   Przysiad → odbicie → lot (klatka „skok”) → lądowanie z ugięciem.
+   Klatka „skok” ma stopy ~7% niżej niż „stoi”, więc jest widoczna
+   tylko wtedy, gdy ciało jest uniesione o więcej (26%–72%).
+   Klatki zmieniają się twardo (step-end), bez przenikania:
+   dwie pozy naraz dają widmo łapek. */
+
+.hipopotam[data-ruch="podskok"] .hipopotam__cialo        { animation: hipopotam-cialo var(--hipopotam-podskok) both; }
+.hipopotam[data-ruch="podskok"] .hipopotam__klatka--skok { animation: hipopotam-klatka-skok var(--hipopotam-podskok) step-end both; }
+.hipopotam[data-ruch="podskok"] .hipopotam__klatka--stoi { animation: hipopotam-klatka-stoi var(--hipopotam-podskok) step-end both; }
+.hipopotam[data-ruch="podskok"] .hipopotam__cien         { animation: hipopotam-cien var(--hipopotam-podskok) both; }
+
+@keyframes hipopotam-cialo {
+  0%   { transform: translateY(0) scale(1, 1);         animation-timing-function: var(--ease-out); }
+  16%  { transform: translateY(0) scale(1.05, 0.92);   animation-timing-function: var(--ease-out); } /* przysiad */
+  26%  { transform: translateY(-8%) scale(0.96, 1.06); animation-timing-function: var(--ease-wznos); } /* odbicie */
+  54%  { transform: translateY(-24%) scale(1, 1);      animation-timing-function: var(--ease-opad); } /* szczyt */
+  80%  { transform: translateY(0) scale(1, 1);         animation-timing-function: var(--ease-out); } /* lądowanie */
+  88%  { transform: translateY(0) scale(1.04, 0.94);   animation-timing-function: var(--ease-out); }
+  100% { transform: translateY(0) scale(1, 1); }
+}
+@keyframes hipopotam-klatka-skok {
+  0%   { opacity: 0; }
+  26%  { opacity: 1; }
+  72%  { opacity: 0; }
+  100% { opacity: 0; }
+}
+@keyframes hipopotam-klatka-stoi {
+  0%   { opacity: 1; }
+  26%  { opacity: 0; }
+  72%  { opacity: 1; }
+  100% { opacity: 1; }
+}
+@keyframes hipopotam-cien {
+  0%   { transform: scale(1);   opacity: 1;    animation-timing-function: var(--ease-wznos); }
+  26%  { transform: scale(1);   opacity: 1;    animation-timing-function: var(--ease-wznos); }
+  54%  { transform: scale(0.6); opacity: 0.45; animation-timing-function: var(--ease-opad); }
+  80%  { transform: scale(1);   opacity: 1; }
+  100% { transform: scale(1);   opacity: 1; }
+}
+
+/* ---------- zapraszanie ----------
+   Odchylenie (zamach) → klatka „zaprasza” i przechylenie w stronę otwartej łapki
+   → dwa krótkie skinienia „chodź” → powrót do „stoi”.
+   Klatki zmieniają się twardo w szybkiej fazie ruchu (12% i 88%), żeby podmiana
+   ginęła w ruchu ciała. Łapka jest po lewej stronie ekranu, więc pochylenie
+   w jej stronę to ujemny kąt. */
+
+.hipopotam[data-ruch="zaprasza"] .hipopotam__cialo            { animation: hipopotam-zaprasza-cialo var(--hipopotam-zaprasza) both; }
+.hipopotam[data-ruch="zaprasza"] .hipopotam__klatka--zaprasza { animation: hipopotam-klatka-zaprasza var(--hipopotam-zaprasza) step-end both; }
+.hipopotam[data-ruch="zaprasza"] .hipopotam__klatka--stoi     { animation: hipopotam-klatka-stoi-zaprasza var(--hipopotam-zaprasza) step-end both; }
+.hipopotam[data-ruch="zaprasza"] .hipopotam__cien             { animation: hipopotam-cien-zaprasza var(--hipopotam-zaprasza) both; }
+
+@keyframes hipopotam-zaprasza-cialo {
+  0%   { transform: rotate(0) scale(1, 1);                       animation-timing-function: var(--ease-out); }
+  12%  { transform: rotate(2deg) scale(1.02, 0.97);              animation-timing-function: var(--ease-out); }    /* zamach */
+  32%  { transform: translateX(-1.5%) rotate(-5deg) scale(1, 1); animation-timing-function: var(--ease-in-out); } /* pochylenie */
+  44%  { transform: translateX(-0.5%) rotate(-2deg) scale(1, 1); animation-timing-function: var(--ease-in-out); } /* skinienie 1 */
+  56%  { transform: translateX(-1.5%) rotate(-5deg) scale(1, 1); animation-timing-function: var(--ease-in-out); }
+  68%  { transform: translateX(-0.5%) rotate(-2deg) scale(1, 1); animation-timing-function: var(--ease-in-out); } /* skinienie 2 */
+  80%  { transform: translateX(-1.2%) rotate(-4deg) scale(1, 1); animation-timing-function: var(--ease-out); }
+  90%  { transform: rotate(1deg) scale(1, 1);                    animation-timing-function: var(--ease-out); }    /* powrót */
+  100% { transform: rotate(0) scale(1, 1); }
+}
+@keyframes hipopotam-klatka-zaprasza {
+  0%   { opacity: 0; }
+  12%  { opacity: 1; }
+  88%  { opacity: 0; }
+  100% { opacity: 0; }
+}
+@keyframes hipopotam-klatka-stoi-zaprasza {
+  0%   { opacity: 1; }
+  12%  { opacity: 0; }
+  88%  { opacity: 1; }
+  100% { opacity: 1; }
+}
+/* Cień idzie lekko za ciałem w stronę łapki. */
+@keyframes hipopotam-cien-zaprasza {
+  0%   { transform: translateX(0);  animation-timing-function: var(--ease-out); }
+  12%  { transform: translateX(1%); animation-timing-function: var(--ease-out); }
+  32%  { transform: translateX(-3%); }
+  80%  { transform: translateX(-3%); animation-timing-function: var(--ease-out); }
+  100% { transform: translateX(0); }
+}
+
+/* Mniej ruchu: bez lotu, przechyłu, ściskania i cienia. Zostaje sama zmiana klatki w miejscu. */
+@media (prefers-reduced-motion: reduce) {
+  .hipopotam[data-ruch] .hipopotam__cialo,
+  .hipopotam[data-ruch] .hipopotam__cien { animation: none; }
+}
+
+/* Reakcja na wciśnięcie: cień przygasa od razu, podskok startuje po kliknięciu. */
+.hipopotam:active .hipopotam__cien { opacity: 0.6; }

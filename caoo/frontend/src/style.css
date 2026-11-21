@@ -1,0 +1,115 @@
+:root {
+  --tlo: #f6f7f9; --karta: #ffffff; --tekst: #1d2330; --slaby: #5b6475;
+  --akcent: #1f4e9c; --przepis: #0b6b3a; --ramka: #d9dde5; --uwaga: #fff7e0;
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif; color: var(--tekst); background: var(--tlo);
+}
+body { margin: 0; }
+main { max-width: 960px; margin: 0 auto; padding: 24px 16px 64px; }
+header { display: flex; align-items: baseline; gap: 12px; }
+h1 { font-size: 1.5rem; margin: 0 0 16px; }
+h2 { font-size: 1.15rem; margin: 0 0 4px; }
+h3 { font-size: 1rem; margin: 0; }
+section { background: var(--karta); border: 1px solid var(--ramka); border-radius: 8px; padding: 16px; margin-bottom: 16px; }
+.znacznik { font-size: 0.8rem; color: var(--akcent); border: 1px solid var(--akcent); border-radius: 4px; padding: 1px 6px; }
+.opis { color: var(--slaby); font-size: 0.9rem; margin: 4px 0; }
+.blad { color: #a4161a; }
+.ok { font-size: 0.75rem; color: var(--przepis); }
+.regula { border-top: 1px solid var(--ramka); padding: 12px 0; }
+.adnotacja { margin: 8px 0 0 12px; }
+.zrodlo { font-size: 0.85rem; color: var(--slaby); display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
+.kategoria { font-size: 0.75rem; border-radius: 4px; padding: 1px 6px; background: #eef0f4; }
+.kategoria.przepis { background: #e3f4ea; color: var(--przepis); }
+blockquote { margin: 8px 0 0; padding-left: 12px; border-left: 3px solid var(--akcent); white-space: pre-line; }
+table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+th, td { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--ramka); }
+tr.uwaga td { background: var(--uwaga); }
+.zakladki { display: flex; gap: 8px; margin-bottom: 16px; }
+.zakladki button, button.link { font: inherit; cursor: pointer; }
+.zakladki button { background: transparent; color: var(--akcent); border: 1px solid var(--akcent); border-radius: 6px; padding: 6px 14px; }
+.zakladki button.aktywna { background: var(--akcent); color: #fff; }
+button.link { background: none; border: 0; padding: 0; color: var(--akcent); text-decoration: underline; }
+.wiersz { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+.demo { font-size: 0.75rem; font-weight: 600; color: #8a5a00; background: var(--uwaga); border: 1px solid #e8c56a; border-radius: 4px; padding: 2px 8px; white-space: nowrap; }
+.sekcja { border-top: 1px solid var(--ramka); padding: 10px 0; }
+.sekcja p { margin: 4px 0; }
+.sekcja ul { margin: 4px 0; padding-left: 20px; }
+.ok-tekst { color: var(--przepis); }
+.przeslanka { margin: 8px 0; }
+.braki { background: var(--uwaga); border-radius: 6px; padding: 8px 12px; margin: 6px 0; }
+.braki ul { margin: 4px 0; padding-left: 20px; }
+label.wybor { display: block; margin: 4px 0; }
+label.wybor .demo { margin-left: 4px; }
+details.zrodla { display: inline; font-size: 0.8rem; color: var(--slaby); }
+details.zrodla[open] { display: block; }
+.slad { margin: 4px 0; padding-left: 20px; font-size: 0.9rem; }
+.wiersz-lewy { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-top: 8px; }
+.sekcja > button, .wiersz-lewy button { font: inherit; background: var(--akcent); color: #fff; border: 0; border-radius: 6px; padding: 6px 14px; cursor: pointer; margin-top: 8px; }
+.ocena { margin-top: 12px; border-top: 1px dashed var(--ramka); padding-top: 8px; }
+td.punkty { white-space: nowrap; }
+td.punkty button { font: inherit; width: 32px; margin-right: 2px; border: 1px solid var(--ramka); background: #fff; border-radius: 4px; cursor: pointer; }
+td.punkty button.wybrany { background: var(--akcent); color: #fff; border-color: var(--akcent); }
+input.oczekiwania { width: 100%; font: inherit; margin-top: 4px; padding: 4px 6px; border: 1px solid var(--ramka); border-radius: 4px; box-sizing: border-box; }
+.ocena textarea { width: 100%; font: inherit; margin-top: 8px; box-sizing: border-box; }
+.wynik { border-radius: 6px; padding: 8px 12px; margin: 8px 0; }
+.wynik.neg { background: #fdecea; } .wynik.poz { background: #e3f4ea; }
+.wynik p { margin: 2px 0; }
+button.glowny { font: inherit; background: var(--akcent); color: #fff; border: 0; border-radius: 6px; padding: 6px 14px; cursor: pointer; margin-top: 8px; }
+.rozbieznosc { border-left: 3px solid #e8c56a; padding-left: 8px; margin: 8px 0; }
+h2.odstep, h3.odstep { margin-top: 16px; }
+.pytania-pomocnicze { margin-top: 8px; }
+.pytania-pomocnicze li { margin-bottom: 12px; }
+.pytania-pomocnicze label, .punktacja-z-propozycja label { display: block; }
+.pytania-pomocnicze input, .pytania-pomocnicze select, .punktacja-z-propozycja select { box-sizing: border-box; width: 100%; font: inherit; margin: 3px 0; }
+.punktacja-z-propozycja { white-space: normal; min-width: 10rem; max-width: 18rem; }
+td.punkty .punktacja-z-propozycja button { width: auto; margin: 4px 0; padding: 4px 8px; }
+td.punkty .punktacja-z-propozycja button.link { border: 0; background: none; padding-left: 0; }
+.punktacja-z-propozycja summary { cursor: pointer; }
+.obieg { margin-top: 16px; }
+.obieg h4 { margin: 6px 0; }
+.dane-wersji { display: grid; grid-template-columns: minmax(130px, 1fr) 2fr; gap: 4px 12px; font-size: 0.9rem; }
+.dane-wersji dt { color: var(--slaby); }
+.dane-wersji dd { margin: 0; min-width: 0; overflow-wrap: anywhere; }
+.akcje-wersji { display: flex; flex-wrap: wrap; align-items: end; gap: 8px 16px; margin: 8px 0; }
+.akcje-wersji a { color: var(--akcent); }
+.formularz-wersji fieldset { border: 1px solid var(--ramka); border-radius: 6px; min-width: 0; margin: 12px 0; padding: 10px 12px; }
+.formularz-wersji legend { font-weight: 600; }
+.formularz-wersji label { display: grid; gap: 4px; margin: 6px 0; font-size: 0.9rem; }
+.formularz-wersji input, .formularz-wersji select, .formularz-wersji textarea {
+  font: inherit; padding: 4px 6px; border: 1px solid var(--ramka); border-radius: 4px; max-width: 100%;
+}
+.formularz-wersji textarea { margin-top: 0; }
+.formularz-wersji button:not(.glowny), .akcje-wersji button:not(.glowny) {
+  font: inherit; color: var(--akcent); background: var(--karta); border: 1px solid var(--ramka); border-radius: 6px;
+  padding: 5px 13px; cursor: pointer;
+}
+.akcje-wersji button.glowny { margin-top: 0; }
+.formularz-wersji button:disabled, .akcje-wersji button:disabled { opacity: .6; cursor: wait; }
+.tresc-arkusza { white-space: pre-wrap; }
+.termin-wersji, .poprzednia-wersja { margin: 6px 0; }
+.kategoria.brak, .status-brak { background: #fdecea; color: #a4161a; }
+.status-brak, .status-zrodlo { font-size: 0.75rem; font-weight: 600; border-radius: 4px; padding: 1px 6px; white-space: nowrap; }
+.status-zrodlo { background: #e3f4ea; color: var(--przepis); }
+.element { border-top: 1px dashed var(--ramka); padding: 8px 0; }
+.element.brak { border-left: 3px solid #a4161a; padding-left: 8px; }
+.pierwsza { margin-top: 12px; border-top: 1px solid var(--ramka); padding-top: 8px; }
+.rola { margin-left: auto; font-size: 0.9rem; }
+.graf-kompetencji { margin-top: 16px; border: 1px solid var(--ramka); border-radius: 8px; padding: 12px; }
+.graf-kompetencji summary { cursor: pointer; font-weight: 600; }
+.graf-tresc > select { display: block; max-width: 100%; margin-top: 4px; font: inherit; }
+.graf-sciezka { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(6.2rem, 1fr); gap: 20px; overflow-x: auto; list-style: none; padding: 3px; margin: 12px 0; }
+.graf-sciezka li { position: relative; min-width: 0; }
+.graf-sciezka li:not(:last-child)::after { content: "→"; position: absolute; left: calc(100% + 4px); top: 22px; color: var(--slaby); }
+.graf-wezel { font: inherit; display: grid; gap: 4px; text-align: left; overflow-wrap: anywhere; width: 100%; height: 100%; min-height: 64px; background: var(--karta); color: var(--tekst); border: 1px solid var(--ramka); border-radius: 6px; padding: 7px; cursor: pointer; }
+.graf-wezel span { color: var(--slaby); font-size: 0.75rem; }
+.graf-wezel.dopasowane { border-color: #7aa0d9; }
+.graf-wezel.propozycja { background: var(--uwaga); }
+.graf-wezel[aria-pressed="true"] { outline: 2px solid var(--akcent); outline-offset: 1px; }
+.graf-szczegoly { border-radius: 6px; background: var(--tlo); padding: 12px; margin: 12px 0; }
+.graf-szczegoly h4 { margin: 0 0 8px; }
+.graf-szczegoly dl { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 4px 12px; margin: 0; }
+.graf-szczegoly dt { font-weight: 600; }
+.graf-szczegoly dd { margin: 0; overflow-wrap: anywhere; }
+.graf-propozycje > li { margin-top: 8px; }
+.graf-katalog { display: flex; flex-wrap: wrap; gap: 16px; margin: 8px 0 0; }
+.graf-katalog > div { flex: 1 1 11rem; }
+textarea.akt { width: 100%; font: inherit; margin-top: 8px; box-sizing: border-box; }
