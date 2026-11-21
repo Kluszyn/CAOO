@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import GrafKompetencji from "./GrafKompetencji";
 import ObiegOceny, { dzisiaj } from "./ObiegOceny";
 import PytaniaPomocnicze from "./PytaniaPomocnicze";
+import Rozmowa from "./Rozmowa";
 import { pobierzOcene, zapiszOcene, type KryteriumOceny, type StanOceny, type ZmianyOceny } from "./api";
 
 const PUNKTY = [1, 3, 5, 7, 9];
@@ -197,8 +198,10 @@ function WidokOceny({ s, onZmiana }: { s: StanOceny; onZmiana: (s: StanOceny) =>
         </form>
       )}
       {blad && <p className="blad" role="alert">{blad}</p>}
+      <Rozmowa cyklId={s.cykl_id} kryteria={s.kryteria} odswiezenie={s} />
       <GrafKompetencji cyklId={s.cykl_id} odswiezenie={s} />
       <ObiegOceny s={s} onZmiana={onZmiana} />
     </div>
   );
 }
+

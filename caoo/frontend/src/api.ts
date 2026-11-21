@@ -468,3 +468,37 @@ export const rozstrzygnijZadanie = (id: number, wersja: string, uzasadnienie: st
   wyslij(`/api/przepisy/zadania/${id}`, "POST", { wersja, uzasadnienie }).then((r) => jsonLubBlad<ZadanieDecyzyjne>(r));
 export const rozstrzygnijZbiorczo = (ids: number[], wersja: string, uzasadnienie: string) =>
   wyslij("/api/przepisy/zadania/zbiorczo", "POST", { ids, wersja, uzasadnienie }).then((r) => jsonLubBlad<ZadanieDecyzyjne[]>(r));
+
+// --- Rozmowa oceniająca i notatki (#24) ---
+export interface PytanieRozmowy { id: string; tresc: string; z_propozycji: string | null }
+export interface NotatkaRozmowy {
+  id: number; tresc: string; pytanie_id: string | null; kryterium_id: string | null; zapisano: string;
+}
+export interface StanRozmowy {
+  cykl_id: number; wersja: string; rodzaj: "PYTANIA_DO_ROZMOWY";
+  propozycje: {
+    id: string; rodzaj: "PYTANIE_DO_ROZMOWY"; szablon: string; tresc: string; uzasadnienie: string;
+    powiazanie: { typ: "zadanie" | "wymaganie" | "kryterium" | "poprzednia_ocena" | "przepis" | "wlasne"; opis: string | null; kryterium_id: string | null };
+    etykieta: string | null; adnotacje: SourceRef[];
+  }[];
+  pytania: PytanieRozmowy[]; notatki: NotatkaRozmowy[]; zasada_notatek: string;
+}
+
+async function wynikRozmowy<T>(r: Response): Promise<T> {
+  if (r.status === 403) throw new Error("Nie masz uprawnień do prowadzenia rozmowy dla tego pracownika.");
+  if (r.status === 401) throw new Error("Sesja wygasła. Wybierz ponownie rolę, aby się zalogować.");
+  return jsonLubBlad<T>(r);
+}
+
+export const pobierzRozmowe = (cyklId: number, signal?: AbortSignal) =>
+  zapytaj(`/api/cykle/${cyklId}/rozmowa`, { signal }).then(wynikRozmowy<StanRozmowy>);
+export const zapiszPytaniaRozmowy = (cyklId: number, pytania: PytanieRozmowy[], signal?: AbortSignal) =>
+  zapytaj(`/api/cykle/${cyklId}/rozmowa/pytania`, {
+    method: "PUT", headers: { "content-type": "application/json" }, body: JSON.stringify({ pytania }), signal,
+  }).then(wynikRozmowy<StanRozmowy>);
+export const dodajNotatkeRozmowy = (
+  cyklId: number, dane: { tresc: string; pytanie_id: string | null; kryterium_id: string | null }, signal?: AbortSignal,
+) => zapytaj(`/api/cykle/${cyklId}/rozmowa/notatki`, {
+  method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(dane), signal,
+}).then(wynikRozmowy<NotatkaRozmowy>);
+

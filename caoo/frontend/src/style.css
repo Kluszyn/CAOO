@@ -113,3 +113,14 @@ td.punkty .punktacja-z-propozycja button.link { border: 0; background: none; pad
 .graf-katalog { display: flex; flex-wrap: wrap; gap: 16px; margin: 8px 0 0; }
 .graf-katalog > div { flex: 1 1 11rem; }
 textarea.akt { width: 100%; font: inherit; margin-top: 8px; box-sizing: border-box; }
+
+.rozmowa-oceniajaca { margin-top: 16px; border: 1px solid var(--ramka); border-radius: 8px; padding: 12px; }
+.rozmowa-oceniajaca summary { cursor: pointer; font-weight: 600; }
+.rozmowa-oceniajaca fieldset { border: 1px solid var(--ramka); border-radius: 6px; min-width: 0; margin-top: 12px; }
+.rozmowa-oceniajaca legend { font-weight: 600; }
+.rozmowa-oceniajaca label { display: block; margin-top: 8px; }
+.rozmowa-oceniajaca textarea, .rozmowa-oceniajaca select { display: block; box-sizing: border-box; width: 100%; font: inherit; margin: 4px 0 8px; }
+.rozmowa-oceniajaca p, .rozmowa-oceniajaca blockquote { overflow-wrap: anywhere; }
+.rozmowa-oceniajaca h4 { margin: 14px 0 6px; }
+.rozmowa-propozycje { margin: 12px 0; }
+
